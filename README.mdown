@@ -68,6 +68,10 @@ Crowdvoice.org was made by [Freshout](http://freshout.us) and is developed by
 * [Kazuyoshi Tlacaelel](http://github.com/ktlacaelel)
 * [Pablo González](http://github.com/aukan)
 * [Adrian Sánchez](http://github.com/adrianss)
+* [Francisco Viramontes](http://github.com/kidpollo)
+* [Rene Monroy](http://github.com/renemonroy)
+* [Felix Lau](http://github.com/carlosfelix)
+* [Jesus De Meyer](http://github.com/taxxodium)
 
 ## License
 
