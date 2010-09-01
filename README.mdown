@@ -19,6 +19,8 @@ It will also need to setup a couple of cron jobs to process email, RSS feeds, an
 
 ### 3. Change and rename configuration in this files!
 
+`config/database.yml.example`
+
 `config/cloud_files.yml.example`
 
 `config/config.yml.example`
