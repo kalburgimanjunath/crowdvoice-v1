@@ -7,40 +7,41 @@ It will also need to setup a couple of cron jobs to process email, RSS feeds, an
 
 ## Instructions
 
-1. Install rails 3
+### 1. Install rails 3
   
-  `gem install bundler`
-  
-  `gem install rails -v=3.0.0`
+`gem install bundler`
 
-2. Install bundle dependencies
-  
-  `bundle install`
+`gem install rails -v=3.0.0`
 
-3. Change and rename configuration in this files!
+### 2. Install bundle dependencies
 
-  `config/cloud_files.yml.example`
-  
-  `config/config.yml.example`
-  
-  `config/imod_config.yml.example`
-  
-  `config/initializers/setup_mail.rb.example`
-  
-  `config/rackspace_cloudfiles.yml.example`
-  
-  `db/seeds.rb.example`
+`bundle install`
 
-  `config/initializers/hoptoad.rb.example`
+### 3. Change and rename configuration in this files!
 
-4. Migrate and run
-  
-  `rake db:create db:migrate db:seed`
-  
-  `rails server`
+`config/cloud_files.yml.example`
 
-5. Background works
-  Crowdvoice needs some background jobs, so you'll need to check `cron/schedule.rb` and `deploy/after_restart.rb`
+`config/config.yml.example`
+
+`config/imod_config.yml.example`
+
+`config/initializers/setup_mail.rb.example`
+
+`config/rackspace_cloudfiles.yml.example`
+
+`db/seeds.rb.example`
+
+`config/initializers/hoptoad.rb.example`
+
+### 4. Migrate and run
+
+`rake db:create db:migrate db:seed`
+
+`rails server`
+
+### 5. Background works
+
+Crowdvoice needs some background jobs, so you'll need to check `cron/schedule.rb` and `deploy/after_restart.rb`
 
 ## Credentials
 
