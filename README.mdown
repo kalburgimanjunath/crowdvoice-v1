@@ -57,3 +57,17 @@ parts of the voices, such as basic information like title and description.
 
 Once you're logged in as admin/mod, you'll see two options at the bottom of each voice, which are for
 resting votes or delete the content.
+
+## Credits and Contributors
+
+Crowdvoice.org was made by [Freshout](http://freshout.us) and is developed by
+
+* [Edgar J. Suárez](http://github.com/edgarjs)
+* [Kazuyoshi Tlacaelel](http://github.com/ktlacaelel)
+* [Pablo González](http://github.com/aukan)
+* [Adrian Sánchez](http://github.com/adrianss)
+
+## License
+
+Released under the [MIT License](http://www.opensource.org/licenses/mit-license.php)
+
