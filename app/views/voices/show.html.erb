@@ -1,0 +1,361 @@
+<% facebook_sharer_meta_tags(@voice) %>
+<% keywords_meta_tag(@voice) %>
+<% javascript :voice, 'jquery.ba-url', 'cpy-blog-widget'%>
+<% content_for(:head) do %>
+<%= stylesheet_link_tag 'ajax-search' %>
+<script type="text/javascript">
+  Crowdvoice.Voice.currentId = '<%= @voice.slug %>';
+  $(function() {
+      //$('a.black.request').pageSlide({height:'85%', modal: true, bookmarkers: false});
+      Crowdvoice.Voice.Content.bindPageSlide($('.pageSlide-request'), {bookmarkers: false});
+      Crowdvoice.Voice.Content.bindPageSlide($('.pageSlide'));
+
+      Crowdvoice.Voice.Content.bindPrettyPhoto($("a[rel*='prettyPhoto']"));
+      // force masonry to rebuild the grid
+      $('#grid').masonry({
+        singleMode: true,
+        animate: false,
+        resizeable: false,
+        itemSelector: '.box.media'
+      });
+
+      <% unless @voice.twitter_search.blank? %>
+      $('#filter_form').get(0).reset();
+      new Crowdvoice.Voice.Twitter.Search({
+          query: '<%= escape_javascript @voice.twitter_search %>',
+          voice_id: '<%= @voice.slug %>'
+      }).perform(function(search) {
+        this.render($('#tweets'));
+        Crowdvoice.Voice.Content.bindPageSlide($('#tweets .pageSlide'));
+      });
+      <% end %>
+        
+      new Crowdvoice.AjaxSearch($('#search_text_field'), $('.search-wrapper'), {
+          position: 'top', 
+          preloader: $('.search-ajax'),
+          close_container: $('.search-close'),
+          close_active_image: "<%= image_path 'btn-close-dark.png' %>",
+          close_inactive_image: "<%= image_path 'btn-magnify-dark.png' %>"
+      });
+  });
+</script>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="<%= voice_url(@voice, :rss) %>" />
+<% end %>
+<% title @voice.title %>
+
+<div class="fixed-wrapper">
+  <div class="advices">
+    <%= render :partial => "content_voting_participation" %>
+    
+  </div>
+  <div class="request-voice left">
+    <%= render :partial => "widget/menu_blog_widget" %>
+    <%= link_to image_tag("request-voice-vertical.png", :alt => "Request a voice"), APP_CONFIG['wufoo_url'], :class => "pageSlide-request", :target => "_blank", :titlte => "Request a voice" %>
+  </div>
+  <div class="header relative">
+    <div class="top-cont">
+      <div class="img-bg"><div class="image" style="background-image: url('<%= @voice.header_background_image.url %>');"></div></div>
+      <div class="mask"></div>
+      <div class="mask-opacity"></div>
+      <div class="top-line"><div class="colored"></div></div>
+      <div class="community"> 
+        <div> 
+          <div class="mask-opacity"></div>
+          <div class="mask-opacity support-layer"></div>
+          <div class="hover-arrow support-layer"></div>
+          <% unless @voice.fb_page_id.blank? %>
+            <% Facebook::Page.new(@voice.fb_page_id, APP_CONFIG['facebook_access_token']).members(16).each do |member| %>
+              <img src="https://graph.facebook.com/<%= member['id'] %>/picture" />
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="wrap relative voice-data">
+        <div class="copyright tooltip">
+          &copy;
+          <div class="dropdown rounded gray box">
+            <div class="hl"><div class="hr"><div class="hc"></div></div></div>
+            <div class="ml"><div class="mr"><div class="mc">
+              <p><%= auto_link @voice.header_copyright, :html => { :class => 'pageSlide' } %></p>
+            </div></div></div>
+            <div class="fl"><div class="fr"><div class="fc"></div></div></div>
+            <div class="rc-tip"></div>
+          </div>
+        </div>
+        
+        <div class="background"></div>
+        <div class="background-bottom"></div>
+        
+        <div class="info left">
+          <h1 class="title left">
+            <%= @voice.title %>
+            <%= link_to image_tag('view-location.png', :alt => "View #{@voice.location} on Google Maps"), @voice.location_url, :title => "View #{@voice.location} on Google Maps", :class => "pageSlide" %>
+          </h1>
+          <ul class="options right horizontal list">
+            <li class="select subscription">
+              <a class="button color small follow darker">Follow</a>
+              <div class="dropdown rounded gray box">
+                <div class="hl"><div class="hr"><div class="hc"></div></div></div>
+                <div class="ml"><div class="mr"><div class="mc" style="overflow:auto;padding:0px;text-align:left">
+                  <div style="padding:5px">
+                  <%= form_for [@voice, Subscription.new] do |f| %>
+                    <p>Get daily updates of this Voice!</p>
+                    <div class="sus">
+                      <%= f.text_field :email, :class => "text-field left", :value => "Email" %>
+                      <%= f.submit "Subscribe", :class => "button subscribe hide-text" %>
+                      <div class="clear"></div>
+                    </div>
+                  <% end %>
+                  </div>
+                  <div class="follow_rss">
+                  <a href="<%= voice_url(@voice, :format => 'rss') %>">
+                    <%= image_tag('rss_icon.png') %> <span>Subscribe to this RSS voice</span>
+                  </a>
+                  </div>
+                </div></div></div>
+                <div class="fl"><div class="fr"><div class="fc"></div></div></div>
+                <div class="rc-tip"></div>
+              </div>
+            </li>
+            <li class="select social">
+              <a class="button color small spread darker">Spread</a>
+              <div class="dropdown rounded gray box">
+                <div class="hl"><div class="hr"><div class="hc"></div></div></div>
+                <div class="ml"><div class="mr"><div class="mc">
+                  <a title="Share to Facebook" href="http://www.facebook.com/sharer.php?u=<%= CGI.escape(voice_url(@voice)) %>" onclick="javascript:window.open('http://www.facebook.com/sharer.php?u=<%= CGI.escape(voice_url(@voice)) %>', 'sharer', 'toolbar=0,status=0,width=626,height=436');return false;" class="facebook left hide-text social-icon"></a>
+                  <%= link_to 'Twitter', twitter_share_voice_path(@voice), :class => "twitter left hide-text social-icon", :method => :post %>
+                  <div class="clear"></div>
+                </div></div></div>
+                <div class="fl"><div class="fr"><div class="fc"></div></div></div>
+                <div class="rc-tip"></div>
+              </div>
+            </li>
+            <% if @voice.fb_page_id.present? %>
+              <li class="select fb">
+                <iframe src="http://www.facebook.com/plugins/like.php?href=<%= CGI.escape @voice.fb_page_url %>&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=dark&amp;height=35" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+              </li>
+            <% end %>
+            <div class="clear"></div>
+          </ul>
+          <div class="clear"></div>
+          <p><%= @voice.about %></p>
+        </div>
+        <div class="clear"></div>
+        <div class="voice-bar">
+          <div class="relative voice-post">
+            <%= form_for [@voice, Content.new], :remote => true, :html => { :multipart => true } do |f| %>
+                <div class="input-text left">
+                  <div>
+                    <div>
+                      <%= f.text_field :url, :value => "Post a URL", :autocomplete => "off" %>
+                    </div>
+                  </div>
+                </div>
+                <ul class="url horizontal list">
+                  <li class="image tooltip">
+                    <span class="hide-text">Image</span>
+                    <div class="dropdown rounded gray box">
+                      <div class="hl"><div class="hr"><div class="hc"></div></div></div>
+                      <div class="ml"><div class="mr"><div class="mc">
+                        <p>Add a message to your image</p>
+                        <%= f.text_area :description %>
+                        <p>Also you can send images to this email: <br/>
+                        <strong>
+                          <%= mail_to "voice+#{@voice.id}@crowdvoice.org" %>
+                        </strong><br />
+                        (max-size for attachments is 2mb.)
+                        </p>
+                        <!-- Here goes the tooltip content -->
+                      </div></div></div>
+                      <div class="fl"><div class="fr"><div class="fc"></div></div></div>
+                      <div class="rc-tip"></div>
+                    </div>
+                    <div class="dropdown rounded gray box info">
+                      <div class="hl"><div class="hr"><div class="hc"></div></div></div>
+                      <div class="ml"><div class="mr"><div class="mc">
+                        <p>Put the URL of your image to display in this voice.</p>
+                        <p>Also you can send images to this email:
+                          <strong>
+                            <%= mail_to "voice+#{@voice.id}@crowdvoice.org" %>
+                          </strong>
+                        (max-size for attachments is 2mb.)
+                        </p>
+                      </div></div></div>
+                      <div class="fl"><div class="fr"><div class="fc"></div></div></div>
+                      <div class="rc-tip"></div>
+                    </div>
+                  </li>
+                  <li class="video tooltip">
+                    <span class="hide-text">Video</span>
+                    <div class="dropdown rounded gray box info">
+                      <div class="hl"><div class="hr"><div class="hc"></div></div></div>
+                      <div class="ml"><div class="mr"><div class="mc">
+                        <p>Put the URL of your Youtube or Vimeo video to display in this voice.</p>
+                      </div></div></div>
+                      <div class="fl"><div class="fr"><div class="fc"></div></div></div>
+                      <div class="rc-tip"></div>
+                    </div>
+                  </li>
+                  <li class="link tooltip">
+                    <span class="hide-text">Link</span>
+                    <div class="dropdown rounded gray box">
+                      <div class="hl"><div class="hr"><div class="hc"></div></div></div>
+                      <div class="ml"><div class="mr"><div class="mc">
+                        <p>Choose an image for this Link</p>
+                        <div class='carousel-image'>
+                          <img src="/images/loader.gif" border="0" class="carousel-loader" style="display: none"/>
+                          </div>
+                          <div class='carousel-arrows'>
+                          <div class='left-arrow' id='carousel_left_arrow'></div>
+                          <div class='right-arrow' id='carousel_right_arrow'></div>
+                          <div class='carousel-counter'></div>
+                        </div>
+                        <br />
+                        <p>Add custom description to the link</p>
+                        <%= text_area_tag 'link_description', nil, :class => "text-field" %>
+                        <!-- Here goes the tooltip content -->
+                      </div></div></div>
+                      <div class="fl"><div class="fr"><div class="fc"></div></div></div>
+                      <div class="rc-tip"></div>
+                    </div>
+                    <div class="dropdown rounded gray box info">
+                      <div class="hl"><div class="hr"><div class="hc"></div></div></div>
+                      <div class="ml"><div class="mr"><div class="mc">
+                        <p>Put the URL of your Notice, Blog Post, or Article to display in this voice.</p>
+                      </div></div></div>
+                      <div class="fl"><div class="fr"><div class="fc"></div></div></div>
+                      <div class="rc-tip"></div>
+                    </div>
+                  </li>
+                </ul>
+
+                <%= hidden_field_tag 'link_title', '' %>
+                <%= hidden_field_tag 'link_image', '' %>
+
+                <div class="right tooltip post-url">
+                  <%= f.submit "Post", :class => "button color big post" %>
+                  <div class="dropdown rounded gray box">
+                    <div class="hl"><div class="hr"><div class="hc"></div></div></div>
+                    <div class="ml"><div class="mr"><div class="mc">
+                      <h2>Thanks for participating</h2>
+                      <p>Your post will be listed as unapproved. You will receive an email when it is becomes public. You can also help us voting for it to get it automatically approve.</p>
+                      <!-- THIS THE MARKUP WHEN AN ERROR HAPPENED
+                      <h2>Oops!</h2>
+                      <p>Thanks for participating but the content is already in the stream. Try a different image, video or link.</p>
+                      -->
+                    </div></div></div>
+                    <div class="fl"><div class="fr"><div class="fc"></div></div></div>
+                    <div class="rc-tip"></div>
+                  </div>
+                </div>
+                <div class="clear"></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="twitter relative">
+  <div class="wrap relative">
+    <div class="tweets relative" id="tweets"></div>
+    <span class="hide-text">&nbsp;</span>
+    <div class="menu">
+      <div>
+        <div>
+          <% unless @voice.twitter_search.blank? %>
+            <img src="/images/logo-twitter.png" alt="Twitter" class="left"/>
+            <p class="left"><%= @voice.twitter_search %></p>
+            <div class="button gray show-tweets right"><div><div><strong>Show tweets</strong></div></div></div>
+            <div class="clear"></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-types">
+  <div class="wrap relative">
+    <div class="controls">
+      <%= form_tag @voice, :remote => true, :method => :get, :id => "filter_form" do %>
+        <%= hidden_field_tag :filters_form, 1 %>
+        <div class="filter select left">
+          <div class="button gray-small"><div><div><div>Filter</div></div></div></div>
+          <div class="dropdown">
+            <ul class="filter-list">
+              <li><div class="checkbox left"></div><span><%= check_box_for_filter("Image") %><strong>Images</strong></span></li>
+              <li><div class="checkbox left"></div><span><%= check_box_for_filter("Video") %><strong>Videos</strong></span></li>
+              <li><div class="checkbox left"></div><span><%= check_box_for_filter("Link") %><strong>Links</strong></span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="sort select left">
+          <div class="button gray-small"><div><div><div>Limit</div></div></div></div>
+          <div class="dropdown">
+            <ul class="filter-list">
+              <li><div class="checkbox left"></div><span><%= radio_button_for_limit(7) %><strong>Past Week</strong></span></li>
+              <li><div class="checkbox left"></div><span><%= radio_button_for_limit(30) %><strong>Past Month</strong></span></li>
+              <li><div class="checkbox left"></div><span><%= radio_button_for_limit(0) %><strong>Everything</strong></span></li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+      <div class="clear"></div>
+    </div>
+
+  <!-- ANNOUNCEMENTS -->
+  <%= render @announcements if @announcements.size %>
+
+    <!-- CONTENT TYPES GRID STARTS HERE -->
+    <div class="grid" id="grid">
+      <%= render :partial => "contents/content", :collection => @contents %>
+    </div>
+    <% unless @last %>
+      <%= link_to 'MORE', offset_voice_path(@voice, :offset => (params[:offset] || 0).to_i + 1), :class => "more-content" %>
+    <% end %>
+
+
+     <!-- CONTENT TYPES GRID ENDs HERE -->
+
+     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+  </div>
+</div>
+<div class="search-bar">
+    <div class="aligned">
+        <div>
+            <%= link_to image_tag('crowdvoice-logo-black.png'), root_path %>    
+        </div>
+        <%= image_tag 'search-bar-separator.png', :class => 'left sep' %>
+        <div class="search-wrapper">
+            <div class="search-input-text" style="position: relative">
+          <div>
+            <div style="position:relative">
+                        <input type="text" name="search-bar" value="Search a Voice" id="search_text_field" autocomplete="off" />
+                        <div class="search-btns">
+                            <%= image_tag "ajax-loader.gif", :class => "search-ajax" %>
+                            <%= image_tag "btn-magnify-dark.png", :class => "search-close" %>
+                        </div>
+            </div>
+          </div>
+        </div>
+    
+        </div>
+        <%= image_tag 'search-bar-separator.png', :class => 'left sep' %>
+        <div>
+            <div class="voice-index">
+                <strong>Voice Index</strong>
+            </div>
+        </div>
+    </div>
+    <div class="aligned">
+        <div class="video-listing" style="display: none">
+            <%= render :partial => "all_voices" %>    
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,21 @@
+<%= div_for content, :class => "rounded white box media left #{"pending" unless content.approved?}" do %>
+  <div class="hl"><div class="hr"><div class="hc"></div></div></div>
+  <div class="ml"><div class="mr"><div class="mc">
+		<a name="<%= content.id %>"></a>
+    <%= render :partial => "contents/#{content.class.to_s.downcase}", :object => content %>
+    <div class="overlap command">
+       <%= render "contents/share_buttons", :content => content %>
+    </div>
+    <!--<div class="overlap play"></div>-->
+    <% unless content.approved? %>
+      <div class="overlap opacity"></div>
+    <% end %>
+  </div></div></div>
+  <div class="fl"><div class="fr"><div class="fc"></div></div></div>
+  <% if logged_in? %>
+    <div class="admin-actions">
+      <%= link_to "[Reset votes]", reset_score_voice_content_path(@voice, content), :method => :delete, :confirm => "Are you sure? All votes for this content will be reseted." %>
+      <%= link_to "[Delete]", voice_content_path(@voice, content), :method => :delete, :confirm => "Are you sure? This content won't be able to be recovered." %>
+    </div>
+  <% end %>
+<% end %>

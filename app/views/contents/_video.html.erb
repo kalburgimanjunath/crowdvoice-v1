@@ -1,0 +1,10 @@
+<%= link_to video.url, :rel => "prettyPhoto", :title => video.page_title do %>
+  <%= image_tag(video.preview.url, :height => video.thumbnail_height) %>
+<% end %>
+
+<div class="film to-left"></div>
+<div class="film to-right"></div>
+<div class="film overlap"></div>
+<div class="overlap content">
+  <p><%= truncate(video.page_title) %></p>
+</div>

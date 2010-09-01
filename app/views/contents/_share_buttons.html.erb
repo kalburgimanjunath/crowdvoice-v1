@@ -1,0 +1,4 @@
+<%= link_to "Like", vote_voice_content_path(@voice, content, :up), :class => "button hide-text like left", :remote => true, :method => :put %>
+<%= link_to "Dislike", vote_voice_content_path(@voice, content, :down), :class => "button hide-text dislike right", :remote => true, :method => :put %>
+<div class="clear"></div>
+<a title="Share to Facebook" href="http://www.facebook.com/sharer.php?u=<%= CGI.escape(content.url) %>" onclick="javascript:window.open('http://www.facebook.com/sharer.php?u=<%= CGI.escape(content.url) %>', 'sharer', 'toolbar=0,status=0,width=626,height=436');return false;" class="button hide-text share-facebook"></a>

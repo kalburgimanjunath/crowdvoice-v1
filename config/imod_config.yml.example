@@ -1,0 +1,38 @@
+
+---
+# Automatic Mail Hanlding, configuration file.
+
+# username
+username: user@domain.org
+
+# password
+password: pass
+
+# mail (imap) server
+server: imap.gmail.com
+
+# port
+port: 993
+
+# use ssl?
+ssl: true
+
+# (remote) label_of_the_messages_whose_attachments_you_want_downloaded'
+look_in_folder: inbox
+
+# (remote) move downloaded mails to folder?
+# Note: Make sure to create this folder before running the script!
+downloaded_mails_folder: downloaded_mail
+
+# (remote) folder to place all scanned/downloaded mail
+oversized_mails_folder: oversized_mail
+
+max_mail_size: 2097152
+
+# (local) /path/to/folder/where/attachments/will/be/saved
+save_to_folder: data
+
+# (local) filename to use for log
+log_file: log/imod.log
+
+...

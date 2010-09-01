@@ -1,0 +1,52 @@
+<% title "Image Cropping" %>
+<% content_for(:head) do %>
+  <%= stylesheet_link_tag 'jquery.Jcrop' %>
+  <%= javascript_include_tag 'jquery.Jcrop' %>
+  <script type="text/javascript" charset="utf-8">
+    $(function() {
+      $("#cropbox").Jcrop({
+        onChange: update_crop,
+        onSelect: update_crop,
+        setSelect: [0, 0, 70, 62],
+        bgOpacity: 0.4,
+        aspectRatio: 1.12903225806452 // width / height
+      });
+    });
+    
+    function update_crop(coords) {
+      var rx = 70/coords.w;
+      var ry = 62/coords.h;
+      $('#preview').css({
+        width: Math.round(rx * <%= @voice.background_image_geometry(:large).width %>) + 'px',
+        height: Math.round(ry * <%= @voice.background_image_geometry(:large).height %>) + 'px',
+        marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+        marginTop: '-' + Math.round(ry * coords.y) + 'px'
+      });
+      var ratio = <%= @voice.background_image_geometry(:original).width %> / <%= @voice.background_image_geometry(:large).width %>;
+      $("#crop_x").val(Math.round(coords.x * ratio));
+      $("#crop_y").val(Math.round(coords.y * ratio));
+      $("#crop_w").val(Math.round(coords.w * ratio));
+      $("#crop_h").val(Math.round(coords.h * ratio));
+    }
+  </script>
+<% end %>
+
+<div style="margin: 40px auto; width: 920px">
+  <div style="float:left"><%= image_tag @voice.background_image.url(:large), :id => "cropbox" %></div>
+  <div style="float:right">
+    <h4>Preview:</h4>
+    <div style="width:70px; height:62px; overflow:hidden">
+      <%= image_tag @voice.background_image.url(:large), :id => "preview" %>
+    </div>  
+  </div>
+  <div style="clear: both"></div>
+  <div style="margin-top: 40px">
+    <%= form_for [:admin, @voice] do |f| %>
+      <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+        <%= f.hidden_field attribute, :id => attribute %>
+      <% end %>
+      <p><%= f.submit "Crop" %></p>
+    <% end %>  
+  </div>
+  
+</div>

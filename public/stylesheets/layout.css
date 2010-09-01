@@ -1,0 +1,20 @@
+body,ul,p,h1,h2,h3,form		{margin: 0; padding: 0}
+/*body											{overflow-x: hidden; font-family: Arial, Helvetica; font-size: 12px; background: transparent url('../images/bg-pattern.jpg') 0 0 repeat}*/
+body											{overflow-x: hidden; font-family: Arial, Helvetica; font-size: 12px; background: #212121;}
+ul, ul li									{list-style: none}
+img												{border: none}
+a													{text-decoration: none}
+a:hover										{text-decoration: underline}
+.clear 										{clear:both}
+.aligned									{width: 800px; margin: 0 auto; position: relative}
+.top											{overflow: hidden; height: 38px}
+.top h1										{float: left; position: absolute; top: 0; left: 7px}
+.top h2										{float: right; font-family: 'FranchiseRegular'; width: 600px; position: absolute; top: 10px; right: 10px; font-size: 25px; color: #b3b3b3; text-align: right;}
+.search-top h2						{background: url('../images/tracking-voices-of-protest.png') no-repeat right top;  text-indent: -9999px; font-size: 0; height: 30px;}
+.top h2	a									{color: #b3b3b3;}
+.top h2 a:hover						{color: #EC1125; text-decoration: none;}
+.content									{background-color: #ffffff; padding: 25px 20px}
+.content h2								{font-weight: normal; padding-bottom: 25px; color: #444444; font-size: 24px;}
+.content p								{padding: 0 0 10px 0;}
+.footer										{color: #8d8d8d; font-size: 12px; margin-top: 18px; margin-bottom: 18px;}
+.footer a									{color: #ec1125; float: right; font-weight: bold;}

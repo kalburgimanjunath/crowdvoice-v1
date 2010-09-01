@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Autospec simulator
+# ==================
+#
+# USAGE:
+#
+#   $ ./ok               # Run all specs in spec directory (excluding plugin specs)
+#   $ ./ok :controllers  # Run the code examples in spec/controllers
+#   $ ./ok :helpers      # Run the code examples in spec/helpers
+#   $ ./ok :lib          # Run the code examples in spec/lib
+#   $ ./ok :mailers      # Run the code examples in spec/mailers
+#   $ ./ok :models       # Run the code examples in spec/models
+#   $ ./ok :requests     # Run the code examples in spec/requests
+#   $ ./ok :views        # Run the code examples in spec/views
+#
+
+echo " "
+echo " "
+echo "== Running specs"
+ruby -e 'puts ((("=" * 80) + "\n") * 3)'
+rake spec$1
+./ok $1
+

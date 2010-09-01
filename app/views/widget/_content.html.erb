@@ -1,0 +1,10 @@
+<li>
+  <%= link_to unique_url_for(content), :title => content.page_title, :target => "_blank" do %>
+    <div class="voice-thumb left">
+      <%= image_tag content.preview.url(:thumb_wdgt), :alt => content.page_title, :size => @content_image_size %>
+    </div>
+    <span><%= content.page_title %></span>
+    <span class="clear"></span>
+  <% end %>
+</li>
+

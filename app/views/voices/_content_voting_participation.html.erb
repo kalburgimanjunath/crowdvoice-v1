@@ -1,0 +1,10 @@
+<% unless session[:show_unapproved] %>
+  <div class="participate-voting ad">
+    <p class="left">
+      <%= link_to voice_path(@voice, :u => 1), :title => "Participate! Help us approve images, videos and external links" do %>     
+        <strong>Participate!</strong> Help us approve images, videos and external links
+      <% end %></p>
+    <a class="right hide-text close">Close</a>
+    <div class="clear"></div>
+  </div>
+<% end %>

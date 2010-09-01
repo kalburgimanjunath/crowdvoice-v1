@@ -1,0 +1,17 @@
+# =========================
+# = Default administrator =
+# =========================
+User.create! :email => "admin@domain.org",
+             :password => "pass",
+             :password_confirmation => "pass",
+             :name => "John Doe",
+             :role => "admin"
+
+# =====================
+# = Default moderator =
+# =====================
+User.create! :email => "mod@domain.org",
+             :password => "pass",
+             :password_confirmation => "pass",
+             :name => "Juan D.",
+             :role => "moderator"

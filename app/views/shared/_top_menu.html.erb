@@ -1,0 +1,11 @@
+<% if logged_in? %>
+  <%= link_to 'ANNOUNCEMENTS', admin_announcements_path %>&nbsp;&nbsp;
+  <%= admin do %>
+  	<%= link_to 'SETTINGS', admin_settings_path %>&nbsp;&nbsp;
+  	<%= link_to 'USERS', admin_users_path %>&nbsp;&nbsp;
+  	<%= link_to 'VOICES', admin_voices_path %>&nbsp;&nbsp;
+	<% end %>
+	<%= link_to 'LOGOUT', logout_path %>
+<% else %>
+	TRACKING VOICES OF PROTEST
+<% end %>

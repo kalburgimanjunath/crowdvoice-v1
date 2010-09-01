@@ -1,0 +1,37 @@
+<div class="content">
+	<h2><%= yield(:title) || 'The slogan here' %></h2>
+	<%= form_for [:admin, @announcement], :html => { :autocomplete => "off"} do |f| %>
+  <%= render "shared/error_messages", :target => @announcement %>
+	<ul class="form">
+  	<li>
+    	<%= f.label :title %>
+			<div class="input-wrapper">
+				<div class="input">
+    			<%= f.text_field :title %>
+				</div>
+			</div>
+  	</li>
+  	<li>
+    	<%= f.label :content %>
+    	<%= f.text_area :content %>
+  	</li>
+  	<li>
+    	<%= f.label :url %>
+			<div class="input-wrapper">
+				<div class="input">	
+    			<%= f.text_field :url %>
+				</div>
+			</div>
+  	</li>
+  	<li>
+				<%= f.label :voice %>
+    	<%= f.select :voice_id, Voice.all.collect { |v| [ v.title, v.id ] } %>
+  	</li>
+  	<li>
+			<label>&nbsp;</label>
+    	<%= f.submit %>
+			<%= link_to 'Back', admin_announcements_path %>
+  	</li>
+	</ul>
+<% end %>
+</div>

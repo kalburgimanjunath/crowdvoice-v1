@@ -1,0 +1,56 @@
+Crowdvoice.Voice.loaded();
+$('#content_description, #link_description').val('');
+$('.carousel-counter').text('0 of 0');
+<% if defined?(@error) %>
+    Crowdvoice.Voice.Content.showMessage({
+        msg: '<%= escape_javascript @error %>'
+    });
+    $('.active.tooltip:not(.post-url)').removeClass('active');
+<% else %>
+    Crowdvoice.Voice.Content.showMessage({
+        title: 'Thanks for participating',
+        msg: 'Your post will be listed as unapproved. You can also help us voting for it to get it automatically approved.'
+    });
+    $('#content_url').val($('#content_url').attr('defaultValue')).blur();
+    $('.active.tooltip:not(.post-url)').removeClass('active');
+    var content = $('<%= escape_javascript render(:partial => "contents/content", :object => @content) %>');
+    var contentWrapper = $('<div />').append(content);
+        
+        <% if @content.link? %>
+            updateContents();
+        <% else %>
+            refreshMasonry();
+        <% end %>
+    
+    
+    /*
+    $('#grid').append(contentWrapper)
+    .masonry({
+        appendedContent: contentWrapper
+    }, function(){
+        Crowdvoice.Voice.Content.bindPageSlide(content.find('.pageSlide'));
+        Crowdvoice.Voice.Content.bindPrettyPhoto(content.find("a[rel*='prettyPhoto']"));
+    });
+    */
+<% end %>
+
+function updateContents() {
+    var image = content.find(".voice_content_link_image");
+    if (image.length > 0) {
+        image.load(function() {
+            refreshMasonry()
+        });
+    } else {
+        refreshMasonry();
+    }
+}
+
+function refreshMasonry() {
+    $('#grid').append(contentWrapper)
+    .masonry({
+        appendedContent: contentWrapper
+    }, function(){
+        Crowdvoice.Voice.Content.bindPageSlide(content.find('.pageSlide'));
+        Crowdvoice.Voice.Content.bindPrettyPhoto(content.find("a[rel*='prettyPhoto']"));
+    });
+}

@@ -1,0 +1,16 @@
+<% title "Static Pages" %>
+
+<ul>
+  <% for static_page in @static_pages %>
+    <li>
+      <%= link_to static_page.title, static_page %>
+      <%= admin do %>
+       | <%= link_to "Edit", edit_static_page_path(static_page) %> 
+       | <%= link_to "Delete", static_page, :confirm => "Are you sure?", :method => :delete %>
+      <% end %>
+    </li>
+  <% end %>  
+</ul>
+<%= admin do %>
+  <%= link_to "New Static Page", new_static_page_path %>
+<% end %>

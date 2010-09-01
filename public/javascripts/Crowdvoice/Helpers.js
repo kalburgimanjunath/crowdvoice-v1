@@ -1,0 +1,1 @@
+Crowdvoice.Helpers = {};

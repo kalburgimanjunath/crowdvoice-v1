@@ -1,0 +1,113 @@
+<div class="content">
+    <h2><%= yield(:title) || 'The slogan here' %></h2>
+    <%= form_for [:admin, @voice], :html => { :multipart => true, :autocomplete => "off"} do |f| %>
+      <%= render "shared/error_messages", :target => @voice %>
+        <ul class="form">
+          <li>
+            <%= f.label :title %>
+            <div class="input-wrapper">
+                <div class="input">
+                <%= f.text_field :title %>
+                </div>
+            </div>
+          </li>
+          <li>
+            <%= f.label :about %>
+            <%= f.text_area :about %>
+          </li>
+          <li>
+            <label for="voice in homepage">
+              Keywords for SEO (separated by comas) 
+              <a href="https://adwords.google.com/select/KeywordToolExternal" target="_blank">get suggestions</a>
+            </label>
+            <%= f.text_area :keywords %><br />
+          </li>
+          <li>
+            <%= f.label :show_in_homepage %>
+            <%= f.check_box :show_in_homepage %>
+          </li>
+          <li>
+            <%= f.label :location %>
+            <div class="input-wrapper">
+                <div class="input">
+                <%= f.text_field :location %>
+                </div>
+            </div>
+          </li>
+          <li>
+            <%= f.label :map_url %>
+            <div class="input-wrapper">
+                <div class="input">
+                <%= f.text_field :map_url %>
+                </div>
+            </div>
+          </li>
+          <li>
+            <%= f.label :twitter_search %>
+            <div class="input-wrapper">
+                <div class="input">    
+                <%= f.text_field :twitter_search %>
+                </div>
+            </div>
+          </li>
+          <li>
+            <label>RSS feed</label>
+            <div class="input-wrapper">
+                <div class="input">    
+                <%= f.text_field :rss_feed %>
+                </div>
+            </div>
+          </li>
+          <li>
+            <%= f.label :allow_posting, "Mode" %>
+            <%= f.select :allow_posting, [["Go", true], ["Stop", false]] %>
+          </li>
+          <%= admin do %>
+            <li>
+              <%= f.label :fb_page_url, 'Facebook page URL' %>
+              <div class="input-wrapper">
+                <div class="input">    
+                <%= f.text_field :fb_page_url %>
+                </div>
+              </div>
+            </li>
+            <li>
+              <%= f.label :header_background_image, 'Header image' %>
+              <%= f.file_field :header_background_image %>
+            </li>
+            <li>
+              <%= f.label :header_copyright, 'Copyright' %>
+              <span class="desc">Header image copyright</span>
+              <div class="input-wrapper">
+                <div class="input">    
+                <%= f.text_field :header_copyright %>
+                </div>
+              </div>
+            </li>
+            <li>
+            </li>
+            <li>
+                <%= f.label :background_image, 'Background image' %>
+              <%= f.file_field :background_image %>
+            </li>
+            <li>
+              <%= f.label :background_copyright, 'Copyright' %>
+              <span class="desc">Background image copyright</span>
+              <div class="input-wrapper">
+                  <div class="input">    
+                  <%= f.text_field :background_copyright %>
+                  </div>
+              </div>
+            </li>
+            <li>
+                <%= f.label :color, 'Category Color' %>
+              <%= f.select :color, APP_CONFIG['category_colors'], { :include_blank => false } %>
+            </li>
+          <% end %>
+          <li>
+              <label>&nbsp;</label>
+              <%= f.submit %>
+          </li>
+        </ul>
+    <% end %>
+</div>

@@ -1,0 +1,7 @@
+@font-face {
+	font-family: 'FranchiseRegular';
+	src: url('../stylesheets/franchise-bold-webfont.eot');
+	src: local('☺'), url('../stylesheets/franchise-bold-webfont.svg#webfont3Dpcb6iA') format('svg'), url('../stylesheets/franchise-bold-webfont.woff') format('woff'), url('../stylesheets/franchise-bold-webfont.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}

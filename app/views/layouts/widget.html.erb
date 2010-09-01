@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>CrowdVoice - <%= yield(:title) || 'Tracking voices of protest' %></title>
+    <% if Rails.env != 'development' %>
+      <%= stylesheet_link_tag 'http://c2227012.cdn.cloudfiles.rackspacecloud.com/widget.css' %>
+    <% else %>
+      <%= stylesheet_link_tag 'widget' %>
+    <% end %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>

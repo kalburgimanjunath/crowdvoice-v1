@@ -1,0 +1,31 @@
+<div class="content">
+	<%= form_for @static_page do |f| %>
+	  <%= render "shared/error_messages", :target => @static_page %>
+		<ul class="form">
+	  	<li>
+	    	<%= f.label :title %>
+				<div class="input-wrapper">
+					<div class="input">
+	    			<%= f.text_field :title %>
+					</div>
+				</div>
+	  	</li>
+	  	<li>
+	    	<%= f.label :content %>
+	    	<%= f.text_area :content %>
+	  	</li>
+	  	<li>
+	    	<%= f.label :page_type %>
+				<div class="input-wrapper">
+					<div class="input">
+	    			<%= f.text_field :page_type %>
+					</div>
+				</div>					
+	  	</li>
+			<li>
+				<label>&nbsp;</label>
+				<%= f.submit %>
+			</li>
+		</ul>
+	<% end %>
+</div>

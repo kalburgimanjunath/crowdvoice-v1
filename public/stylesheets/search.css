@@ -1,0 +1,40 @@
+@import url('form.css');
+.voices-wrapper						{background-color: #dfdedb; overflow: hidden; border-style: solid; border-width: 1px; border-color: #dadada #d3d2d0 #dadada #dadada}
+.voices										{background: #ffffff url('../images/white-bg.jpg'); width: 528px; border-right: 1px solid #d3d2d0; float: left; padding: 25px 20px}
+.sidebar									{float: right; width: 229px}
+.sidebar-arrow						{position: absolute; top: 58px; right: 229px; width: 15px; height: 29px; background: url('../images/sidebar-arrow.png') no-repeat;}
+.voices h2								{font-weight: bold; padding-bottom: 25px; text-transform: uppercase;}
+.voices h2 span, 
+.voices h3 span						{color: #ec1125}
+.voices > ul > li					{width: 100%; float: left; padding-bottom: 15px; margin-bottom: 15px; border-bottom: 1px dashed #dededa}
+.voices > ul > li > div		{width: 70px; height: 62px; border: 1px solid #e1e1e1; overflow: hidden; float: left; padding: 2px}
+.voices > ul > li > h3		{width: 445px; float: right; font-size: 16px}
+.voices > ul > li > h3 > a{color: #444444}
+.voices > ul > .last			{border-bottom: 0}
+.pagination > ul					{margin-top: 1px; float: left;}
+.pagination > ul > li			{float: left;}
+.pagination > ul > li > a	{float: left; margin: 0 10px; font-size: 14px; color: #c7c7c7}
+.pagination > ul .active a{font-size: 17px; color: #6b6b6b}
+/* will_paginate CSS */
+.pagination                       {margin-top: 1px; float: left;}
+.pagination > a,
+.pagination > em                  {float: left;}
+.pagination > a                   {float: left; margin: 0 10px; font-size: 14px; color: #c7c7c7}
+.pagination > em                  {float: left; margin: 0 10px;font-size: 17px; color: #6b6b6b}
+.pagination > a.next_page,
+.pagination > a.previous_page,
+.pagination > span.next_page,
+.pagination > span.previous_page  {width: 14px; height: 19px; overflow: hidden; float: left; background-image: url('../images/pagination-arrows.png'); background-repeat: none; text-indent: -90000px;}
+.pagination > span.next_page      {background-position: 0 -19px}
+.pagination > a.previous_page     {background-position: 0 -38px}
+.pagination > a.next_page         {background-position: 0 -57px}
+
+.arrow										{width: 14px; height: 19px; overflow: hidden; float: left; background-image: url('../images/pagination-arrows.png'); background-repeat: none}
+.arrow.right							{background-position: 0 -19px}
+.arrow.left.active				{background-position: 0 -38px}
+.arrow.right.active				{background-position: 0 -57px}
+.search-wrapper						{background: url('/images/search-sb-bg.png') no-repeat; width: 201px; padding-left: 3px; margin: 12px auto 0;}
+.search										{background: url('/images/search-sb-bg.png') no-repeat right -96px; width: 198px; padding-right: 3px; margin: 0}
+.search form							{background: url('/images/search-sb-bg.png') repeat-x 0 -48px; height: 32px; padding: 8px 6px; overflow: hidden;}
+
+

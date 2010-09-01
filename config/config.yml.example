@@ -1,0 +1,14 @@
+wufoo_url: "http://crowdvoice.wufoo.com/forms/request-a-voice/"
+twitter_consumer_key: 'key'
+twitter_consumer_secret: 'secret'
+
+flickr_api_key: 'key'
+
+facebook_access_token: 'your fb oauth access token'
+
+category_colors:
+    - blue
+    - green
+    - yellow
+    - orange
+    - red

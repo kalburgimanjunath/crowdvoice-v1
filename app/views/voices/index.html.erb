@@ -1,0 +1,7 @@
+<% unless params[:search].blank? %>
+  <% title "Search Results" %>
+	<%= render "search" %>
+<% else %>
+  <% title "HOME" %>
+	<%= render "homepage" %>
+<% end %>

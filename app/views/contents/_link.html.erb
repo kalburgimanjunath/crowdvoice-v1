@@ -1,0 +1,15 @@
+<h3><%= link_to link.page_title, link.url, :class => 'pageSlide', :'data-value' => link.id %></h3>
+<div class="rounded white box thumb left">
+  <div class="hl"><div class="hr"><div class="hc"></div></div></div>
+  <div class="ml"><div class="mr"><div class="mc">
+    <%= image_tag link.thumbnail_url, :height => link.thumbnail_height.floor, :width => link.thumbnail_width.floor, :class => "voice_content_link_image" unless link.thumbnail_url.nil? %>
+  </div></div></div>
+  <div class="fl"><div class="fr"><div class="fc"></div></div></div>
+</div>
+<div class="data" style="max-height: 120px;">
+  <p><%= truncate(link.page_content, :length => 140) %></p>
+</div>
+<div class="clear"></div>
+<div class="url">
+   <%= link_to truncate(link.url, :length => 40), link.url, :class => 'pageSlide', :rel => link.id %>
+</div>

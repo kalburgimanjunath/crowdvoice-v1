@@ -1,0 +1,3 @@
+<%= content_tag :li, :class => ("active" if voice_counter.zero?) do %>
+  <%= link_to truncate(voice.title.upcase, :length => 80), voice_url(voice) %>
+<% end %>

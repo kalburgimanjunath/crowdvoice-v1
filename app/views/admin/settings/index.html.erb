@@ -1,0 +1,22 @@
+<% stylesheet "voices-new" %>
+<div class="content">
+  <h2><% title "Settings" %></h2>
+  <%= form_tag admin_settings_path, :autocomplete => "off" do %>
+    <ul class="form">
+      <% Settings.each do |key, value| %>
+        <li>
+          <%= label_tag key %>
+          <div class="input-wrapper">
+					  <div class="input">
+              <%= text_field_tag "settings[#{key}]", value %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+      <li>
+				<label>&nbsp;</label>
+	    	<%= submit_tag %>
+			</li>
+		</ul>
+  <% end %>
+</div>

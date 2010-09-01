@@ -1,0 +1,49 @@
+<div class="content">
+	<h2><%= yield(:title) || 'The slogan here' %></h2>
+	<%= form_for [:admin, @user], :html => { :autocomplete => "off"} do |f| %>
+	  <%= render "shared/error_messages", :target => @user %>
+		<ul class="form">
+			<li>
+		    <%= f.label :name %>
+				<div class="input-wrapper">
+					<div class="input">
+		    		<%= f.text_field :name %>
+					</div>
+				</div>
+		  </li>
+		  <li>
+		    <%= f.label :email %>
+				<div class="input-wrapper">
+					<div class="input">
+		    		<%= f.text_field :email %>
+					</div>
+				</div>
+		  </li>
+		  <li>
+		    <%= f.label :role %>
+		    <%= f.collection_select :role, User::ROLES, :to_s, :titleize %>
+		  </li>
+		  <li>
+		     <%= f.label :password %>
+				<div class="input-wrapper">
+					<div class="input">		
+		     		<%= f.password_field :password %>
+					</div>
+				</div>
+		   </li>
+		   <li>
+		      <%= f.label :password_confirmation %>
+					<div class="input-wrapper">
+						<div class="input">
+		      		<%= f.password_field :password_confirmation %>
+						</div>
+					</div>
+		    </li>
+				<li>
+					<label>&nbsp;</label>					
+		    	<%= f.submit %>
+					<%= link_to 'Back', admin_users_path %>
+				</li>
+			</ul>
+	<% end %>
+</div>

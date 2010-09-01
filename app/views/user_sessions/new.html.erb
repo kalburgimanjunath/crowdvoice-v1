@@ -1,0 +1,29 @@
+<% stylesheet "login" %>
+	<div class="content">
+		<h2>Login</h2>
+	  <%= form_for @user_session, :html => { :autocomplete => "off"} do |f| %>
+		  <%= render "shared/error_messages", :target => @user_session %>
+			<ul class="form">
+		  	<li>
+		    	<%= f.label :email %>
+					<div class="input-wrapper">
+						<div class="input">
+		    			<%= f.text_field :email %>
+						</div>
+					</div>
+		  	</li>
+		  	<li>
+		    	<%= f.label :password %>
+					<div class="input-wrapper">
+						<div class="input">	
+		    			<%= f.password_field :password %>
+						</div>
+					</div>
+		  	</li>
+		  	<li>
+					<label>&nbsp;</label>
+		    	<%= f.submit "Login" %>
+				</li>
+		  </ul>
+		<% end %>
+	</div>

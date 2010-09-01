@@ -1,0 +1,12 @@
+staging:
+  container: cv_images_staging
+  username: username
+  api_key: key
+development:
+  username: username
+  api_key: pass
+  container: cv_images_dev
+production:
+  username: username
+  api_key: pass
+  container: cv_images_prod

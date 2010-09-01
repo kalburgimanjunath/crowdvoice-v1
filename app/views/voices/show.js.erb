@@ -1,0 +1,68 @@
+var content = $('<%= escape_javascript(render :partial => "contents/content", :collection => @contents) %>');
+Crowdvoice.Voice.loaded();
+<% if params[:filters_form] == "1" %>
+$('#grid').replaceWith($('<div />').addClass('grid').attr('id', 'grid').append(content));
+Crowdvoice.Voice.arrangeContents();
+Crowdvoice.Voice.Content.bindPageSlide($('#grid .pageSlide'));
+Crowdvoice.Voice.Content.bindPrettyPhoto($("#grid a[rel*='prettyPhoto']"));
+// reset offset of more button, since content changed
+currentOffset = 0;
+var more = $('.more-content');
+if(more.length) {
+    more.attr('href', $.queryString(more.attr('href'), {
+     offset: currentOffset + 1
+    }));
+}
+<% else %>
+var wrapper = $('<div />').append(content);
+Crowdvoice.Voice.Content.bindPageSlide(wrapper.find('.pageSlide'));
+Crowdvoice.Voice.Content.bindPrettyPhoto(wrapper.find("a[rel*='prettyPhoto']"));
+
+var loadedImages = 0;
+var images = content.find(".voice_content_link_image");
+if(images.length > 0) {
+    images.each(function() {
+        $(this).load(function() {
+            loadedImages++;
+            if(loadedImages == images.length) {
+                $('#grid').masonry({
+                    appendedContent: wrapper
+                });
+            }
+        }); 
+    });
+} else {
+    $('#grid').masonry({
+        appendedContent: wrapper
+    });
+}
+//$('#grid').append(wrapper).masonry({ appendedContent: wrapper });
+$('#grid').append(wrapper);
+var more = $('.more-content');
+more.attr('href', location.pathname + '/offset/' + (++currentOffset + 1));
+
+// var images = content.find(".voice_content_link_image");
+// var loadedImages = 0;
+// 
+// for (var ii=0;ii < images.length; ii++) {
+//  var img = $(images[ii]);
+//  img.load(function() {
+//      loadedImages++;
+//      
+//      if (loadedImages >= images.length) {
+//          $('#grid').masonry({
+//                  animate: false,
+//              appendedContent: wrapper
+//          }, function(){
+//              Crowdvoice.Voice.Content.bindPageSlide(content.find('.pageSlide'));
+//              Crowdvoice.Voice.Content.bindPrettyPhoto(content.find("a[rel*='prettyPhoto']"));
+//          });
+//      }
+//  });
+// }
+<% end %>
+<% if @last %>
+$('.more-content').hide();
+<% else %>
+$('.more-content').show();
+<% end %>

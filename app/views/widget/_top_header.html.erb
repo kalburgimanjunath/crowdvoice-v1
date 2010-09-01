@@ -1,0 +1,27 @@
+<div class="voice-header">
+  <div class="voice-nav">
+  	<%= link_to "Crowdvoice", "http://crowdvoice.org", :title => "Crowdvoice", :class => "hide-text crowdvoice-logo widget-icon left", :target => "_blank" %>
+  	<ul class="voice-social right">
+  	  <li>
+  	   <%= link_to "Twitter", "http://twitter.com/crowdvoice", :title => "Twitter", :class => "hide-text widget-icon twitter", :target => "_blank" %>
+  	  </li>
+  	  <li>
+  	   <%= link_to "Facebook", "http://facebook.com/crowdvoice", :title => "Facebook", :class => "hide-text widget-icon facebook", :target => "_blank" %>
+  	  </li>
+  	  <li>
+  	   <%= link_to "RSS", voice_url(@voice, :rss), :title => "RSS", :class => "hide-text widget-icon rss", :target => "_blank" %>
+  	  </li>
+  	</ul>
+  	<div class="clear"></div>
+	</div>
+	<div class="voice-info">
+		<div class="voice-thumb">
+		  <%= image_tag @voice.background_image(:thumb_wdgt), :size => @voice_image_size %>
+		</div>
+		<h3><%= @voice.title %></h3>
+                <% if @show_description %>
+		  <p><%=truncate @voice.about, :length => 25, :separator => ' ' %></p>
+                <% end %>
+		<div class="clear"></div>
+	</div>
+</div>

@@ -1,0 +1,1 @@
+require 'cloud_file_storage_patch'

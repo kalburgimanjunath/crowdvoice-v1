@@ -1,0 +1,1 @@
+Crowdvoice.Voice.Twitter = {};

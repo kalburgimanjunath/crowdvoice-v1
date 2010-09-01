@@ -1,0 +1,19 @@
+<% if defined?(@error) %>
+    $('.post-url.tooltip').addClass('active');
+    Crowdvoice.Voice.Content.showMessage({
+        msg: '<%= escape_javascript @error %>'
+    });
+<% else %>
+    var box = $('#<%= dom_id @content %>.box.media');
+    var newBox = $('<%= escape_javascript render(:partial => "contents/content", :object => @content) %>');
+    newBox.attr('style', box.attr('style'));
+    box.replaceWith(newBox);
+    newBox.effect('highlight', {
+        color: '<%= params[:rating] == "up" ? "green" : "red" %>'
+    });
+    Crowdvoice.Voice.Content.showMessage({
+        title: 'Thanks for your vote!',
+        msg: 'Your vote has been casted.'
+    });
+    Crowdvoice.Voice.Content.bindPrettyPhoto($("#<%= dom_id @content %>.box.media a[rel*='prettyPhoto']"));
+<% end %>

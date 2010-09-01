@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>CrowdVoice - <%= yield(:title) || 'Tracking voices of protest' %></title>
+		<%= stylesheet_link_tag 'fonts', 'layout', 'style' %>
+    <%= javascript_include_tag :jquery, 'sticky-footer' %>
+    <%= yield(:head) %>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <%= csrf_meta_tag %>
+  </head>
+  <body class="green">
+    <%= render 'shared/flash', :flash => flash %>
+		<div class="aligned" style="position: relative;">
+			<div class="top">
+				<h1>
+					<a href="<%= root_path %>"><img src="/images/crowdvoice-gray-logo.png" width="160" height="51" alt="crowdvoice"/></a>
+				</h1>
+				<h2>
+					<%= render 'shared/top_menu' %>
+				</h2>
+			</div>
+    	<%= yield %>
+		</div>
+		<div class="footer aligned">
+			Copyright 2010 CrowdVoice.org.  All rights reserved.
+			<%= link_to 'About Crowdvoice', about_path %>
+		</div>
+  </body>
+</html>

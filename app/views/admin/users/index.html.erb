@@ -1,0 +1,29 @@
+<% title "Listing Users" %>
+<% stylesheet 'grid' %>
+<div class="content">
+	<h2>Users</h2>
+	<p class="options"><%= link_to 'NEW USER', new_admin_user_path if current_user.admin? %></p>
+	<table width="100%" cellpadding="0" cellspacing="0">
+	  <tr>
+	    <th>Name</th>
+	    <th>Email</th>
+	    <th>Role</th>
+	    <%= admin do %>
+	      <th width="25"></th>
+	      <th width="25"></th>
+	    <% end %>
+	  </tr>
+
+	<% @users.each do |user| %>
+	  <tr>
+	    <td><%= user.name %></td>
+	    <td><%= user.email %></td>
+	    <td><%= user.role.titleize %></td>
+	    <%= admin do %>
+	      <td width="25"><%= link_to 'Edit', edit_admin_user_path(user) %></td>
+	      <td width="25"><%= link_to 'Delete', [:admin, user], :confirm => 'Are you sure?', :method => :delete %></td>
+	    <% end %>
+	  </tr>
+	<% end %>
+	</table>
+</div>

@@ -1,0 +1,12 @@
+<div class="announcement">
+	<% unless announcement.url.blank? %>
+		 <a href="<%= announcement.url %>" class="pageSlide">
+	<% end %>
+		<span class="title">
+			<span><%= announcement.title %></span> <%= announcement.content %>
+		</span>
+	<% unless announcement.url.blank? %>
+		 </a>
+	<% end %>
+	<a href="#" class="close-announ hide-text">Close</a>
+</div>

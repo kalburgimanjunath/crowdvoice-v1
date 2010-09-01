@@ -1,0 +1,58 @@
+# CrowdVoice
+
+## Requirements
+
+Crowdvoice runs on rails 3, the required gems will install with bundler. It uses cloudfiles (rackspace storage service) to upload attachments in production.
+It will also need to setup a couple of cron jobs to process email, RSS feeds, and so on in background; all these tasks are in `cron/schedule.rb`.
+
+## Instructions
+
+1. Install rails 3
+  
+  `gem install bundler`
+  
+  `gem install rails -v=3.0.0`
+
+2. Install bundle dependencies
+  
+  `bundle install`
+
+3. Change and rename configuration in this files!
+
+  `config/cloud_files.yml.example`
+  
+  `config/config.yml.example`
+  
+  `config/imod_config.yml.example`
+  
+  `config/initializers/setup_mail.rb.example`
+  
+  `config/rackspace_cloudfiles.yml.example`
+  
+  `db/seeds.rb.example`
+
+  `config/initializers/hoptoad.rb.example`
+
+4. Migrate and run
+  
+  `rake db:create db:migrate db:seed`
+  
+  `rails server`
+
+5. Background works
+  Crowdvoice needs some background jobs, so you'll need to check `cron/schedule.rb` and `deploy/after_restart.rb`
+
+## Credentials
+
+The default admin password is `pass` and the email is `admin@domain.org` and the mod username is
+`mod@domain.org` with the same password.
+
+## Users
+
+Crowdvoice has two types of users, administrator and moderator.
+
+Administrator will be able to do any operation in the system. Moderator will only be able to manage some
+parts of the voices, such as basic information like title and description.
+
+Once you're logged in as admin/mod, you'll see two options at the bottom of each voice, which are for
+resting votes or delete the content.

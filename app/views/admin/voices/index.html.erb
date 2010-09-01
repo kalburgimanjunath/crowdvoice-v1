@@ -1,0 +1,26 @@
+<% title "VOICES" %>
+<% stylesheet 'grid'%>
+<div class="content">
+	<h2>Voices</h2>
+  <p class="options"><%= link_to "New Voice", new_admin_voice_path %> | <%= link_to "Fetch RSS feeds", url_for(:controller => 'admin/voices', :action => 'fetch_feeds') %></p>
+	<table width="100%" cellpadding="0" cellspacing="0">
+	  <tr>
+	    <th>Title</th>
+	    <th>Location</th>
+	    <th>Twitter search</th>
+	    <th>Color</th>
+			<th width="25"></th>
+	    <th width="25"></th>
+	  </tr>
+	<% for voice in @voices %>
+	  <tr>
+	    <td><%= link_to voice.title, voice %></td>
+			<td><%= voice.location %></td>
+			<td><%= voice.twitter_search %></td>
+			<td><%= voice.color %></td>
+      <td width="25"><%= link_to "Edit", edit_admin_voice_path(voice) %></td>
+	    <td width="25"><%= link_to "Delete", [:admin, voice], :confirm => "Are you sure?", :method => :delete %></td>
+	  </tr>
+	<% end %>
+	</table>
+</div>

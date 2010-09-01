@@ -1,0 +1,15 @@
+<% title "All Voices" %>
+<div class="voices-wrapper">
+	<div class="voices">
+	  <h2>Voices</h2>
+		<ul>
+		  <% for voice in @voices %>
+		    <%= content_tag :li, :class => ('last' if voice == @voices.last) do %>
+  				<div><%= image_tag voice.background_image(:small) %></div>
+  				<h3><a href="<%= voice_url(voice) %>" title="<%= voice.title %>"><%= voice.title %></a></h3>
+  			<% end %>
+		  <% end %>
+		</ul>
+		<%= will_paginate @voices %>
+	</div>
+</div>

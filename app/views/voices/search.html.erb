@@ -1,0 +1,13 @@
+<div class="rounded gray box">
+	<div class="hl"><div class="hr"><div class="hc"></div></div></div>
+  <div class="ml"><div class="mr"><div class="mc2">
+		<ul>
+			<% unless @voices.empty? %>
+				<%= render :partial => "search_voice", :collection => @voices %>
+			<% else %>
+				<li class="last">No Voices found!</li>
+			<% end %>
+		</ul>
+  </div></div></div>
+  <div class="fl"><div class="fr"><div class="fc"></div></div></div>
+</div>

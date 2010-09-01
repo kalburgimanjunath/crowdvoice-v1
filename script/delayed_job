@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'config', 'environment'))
+require 'delayed/command'
+class Delayed::Job < ActiveRecord::Base
+  establish_connection(Rails.env.to_sym)
+end
+Delayed::Command.new(ARGV).daemonize

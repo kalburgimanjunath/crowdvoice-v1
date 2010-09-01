@@ -1,0 +1,13 @@
+.search-results {
+	position: absolute;
+	width: 348px;
+	display: 'none';
+}
+
+.search-results ul { margin: 0; padding: 0; }
+.search-results ul li { list-style: none;  border-bottom: 1px solid #ccc; color: #7c7b7b; font-size: 14px; margin: 0;padding: 7px 9px; background: #fff; }
+.search-results ul li span { font-weight: bold; }
+.search-results ul li.last { border-bottom: none; }
+.search-results ul li:hover { background: #dfdfdf; font-weight: bold; color: #444; }
+.search-results ul li a { text-decoration: none; color: #333; }
+.search-results ul li a:hover { text-decoration: none; color: #444; }

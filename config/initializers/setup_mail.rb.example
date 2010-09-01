@@ -1,0 +1,15 @@
+ActionMailer::Base.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :domain               => "domain.org",
+  :user_name            => "user@domain.org",
+  :password             => "pass",
+  :authentication       => "plain",
+  :enable_starttls_auto => true
+}
+ActionMailer::Base.default_url_options[:host] =
+  if Rails.env.development?
+    "localhost:3000"
+  else
+    "domain.org"
+  end

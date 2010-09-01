@@ -1,0 +1,3 @@
+<li class="<%= 'last' unless search_voice_counter < @voices.size-1 %>">
+	<a href="<%= voice_url(search_voice) %>"><%= highlight(search_voice.title, @search, :highlighter => '<span>\1</span>').html_safe+" - #{search_voice.location}" %></a>
+</li>

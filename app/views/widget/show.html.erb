@@ -1,0 +1,9 @@
+<div class="widget-voice <%= @list_height_size %> <%= @list_width_size %>"> 
+  <%= render :partial => "top_header" %>
+  <div class="voice-content">
+  	<ul class="voice-posts">
+      <%= render :partial => "content", :collection => @contents %>
+  	</ul>
+  </div>
+  <%= render :partial => "footer" %>
+</div>

@@ -1,0 +1,29 @@
+<div class="voices-wrapper">
+	<div class="voices">
+		<h2>Search voices for <span><%= @search %></span></h2>
+		<ul>
+		  <% for voice in @voices %>
+		    <%= content_tag :li, :class => ('last' if voice == @voices.last) do %>
+  				<div><%= image_tag voice.background_image(:small) %></div>
+  				<h3><a href="<%= voice_url(voice) %>"><%= highlight(voice.title, @search, :highlighter => '<span>\1</span>').html_safe %></a></h3>
+  			<% end %>
+		  <% end %>
+		</ul>
+		<%= will_paginate @voices %>
+	</div>
+	<div class="sidebar">
+		<div class="search-wrapper">
+			<div class="search">
+		    <%= form_tag root_path, :method => :get do %>
+					<div class="input-wrapper">
+						<div class="input">
+		      		<%= text_field_tag :search, params[:search] %>
+						</div>
+					</div>
+		      <%= image_submit_tag 'magnify-sb.png' %>
+		    <% end %>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar-arrow"></div>
+</div>

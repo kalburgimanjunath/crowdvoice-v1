@@ -1,0 +1,99 @@
+<% content_for(:head) do%>
+<%= stylesheet_link_tag 'ajax-search' %>
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        new Crowdvoice.AjaxSearch($('#search_text_field'), $('.input-search'), 
+            { preloader: $('.search_ajax'), close_container: $('.search_close'), close_active_image: "<%= image_path 'btn-close.png' %>", close_inactive_image: "<%= image_path 'btn-magnify.png' %>" }
+        );
+    });
+</script>
+<% end %>
+<div class="homepage">
+    <div class="voices-wrapper aligned">
+        <div id="slides"> 
+            <ul class="voices">
+              <% @voices.each_with_index do |voice, i| %>
+                  <li style="background: url('<%= voice.background_image.url %>');" id="item_<%= i %>">
+                    <div class="copy hide-text">
+                      <p><%= auto_link voice.background_copyright, :html => { :target => '_blank' } %></p>
+                    </div>
+                  </li>
+                <% end %>
+            </ul>
+        </div>
+        <div class="shadow left"></div>
+        <div class="shadow right"></div>
+        <div class="content">
+            <div class="sidebar">
+                <h1>CROWDVOICE TRACKING VOICES OF PROTEST</h1>
+            </div>
+            <div class="copyright tooltip">
+              &copy;
+        <div class="dropdown rounded gray box">
+          <div class="hl"><div class="hr"><div class="hc"></div></div></div>
+          <div class="ml"><div class="mr"><div class="mc">
+            <% unless @voices.empty? %>
+            <p><%= auto_link @voices.first.background_copyright, :html => { :target => '_blank' } %></p>
+            <% end %>
+          </div></div></div>
+          <div class="fl"><div class="fr"><div class="fc"></div></div></div>
+          <div class="rc-tip"></div>
+        </div>
+            </div>
+        </div>
+        <div class="active-voices">
+            <div>
+                <div>
+                    <h2>Top Voices</h2>
+                </div>
+            </div>
+            <ul>
+                <%= render @voices %>
+            </ul>
+            
+        </div>    
+        <div class="more-voices">
+            <a href="#all-voices"><%= image_tag 'view-more-voices.png' %></a>
+        </div>
+        <div class="fb-like">
+            <%= link_to image_tag('rss_icon_homepage.png'), contents_url(:rss), :title => 'Subscribe to the contents feed' %>
+            <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fcrowdvoice&amp;layout=button_count&amp;show_faces=false&amp;width=88&amp;action=like&amp;colorscheme=dark&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:88px; height:20px;" allowTransparency="true"></iframe>
+        </div>
+        <div class="search-wrapper">
+            <div class="search">
+            <%#= form_tag root_path, :method => :get do %>
+                <div>
+                    <div class="input-search-wrapper" style="position: relative">
+                        <div class="input-search">
+                      <%= text_field_tag :search, "Find a Voice", :id => 'search_text_field', :autocomplete => "off" %>
+                        </div>
+                        <div class="ajax-loader">
+                            <%= image_tag "loader-search.gif", :class => "search_ajax" %>
+                            <%= image_tag "btn-magnify.png", :class => "search_close" %>
+                        </div>
+                    </div>
+                    <%#= image_tag "magnify.png", :id => "search_submit_image" %>
+                    
+                </div>
+                <%# end %>
+            </div>
+        </div>
+    </div>
+    <a href="#" id="next">next</a>
+</div>
+<div class="footer">
+    <div class="aligned">
+      <div class="left">
+        <%= link_to "Request a voice", APP_CONFIG['wufoo_url'], :target => "_blank", :class => "request-link pageSlide" %>
+      </div>
+      <div class="right about">
+        <strong>CrowdVoice</strong> is a user-powered service that tracks voices of protest from around the world. Raise your voice for causes you support with information you submit.
+          <%= link_to 'Learn More', about_path %>
+      </div>
+    </div>
+</div>
+<div class="footer2">
+    <div class="aligned">
+        <%= render :partial => "all_voices" %>
+    </div>
+</div>
