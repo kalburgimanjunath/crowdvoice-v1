@@ -13,7 +13,6 @@
  *     - xy hash Hash containing x, y adjusting for position
  *     - position string Overrides absolute position for cases when fixed is needed
  *     - side string top|bottom|left|right position of the blue dot.
- *     - quarter string a|b|c|d Position of the dot.
  *
  * Freshout - http://freshout.us
  * Edgar J. Suárez
@@ -69,18 +68,13 @@
                     settings.tips[i].xy.x = settings.tips[i].xy.x || 0;
                     settings.tips[i].xy.y = settings.tips[i].xy.y || 0;
                     var tip = new $.helpTip.Tip(settings.tips[i].title, settings.tips[i].text, settings.tips[i].xy, settings.tips[i].position);
-                    tip.render(settings.tips[i].highlight, settings.tips[i].side || 'bottom', settings.tips[i].quarter || 'b');
+                    tip.render(settings.tips[i].highlight, settings.tips[i].side || 'bottom');
                     tips[settings.tips[i].highlight] = tip;
                 }
             }
         }
         
-        function _showTips() {
-            for(var key in tips) {
-                if(tips.hasOwnProperty(key)) {
-                    tips[key].show('fast');
-                }
-            }
+        function _showCloseAllButton() {
             if($('.close-dottips').size() === 0) {
                 $('body').append('<a class="close-dottips">Close all help indicators</a>');
                 $('.close-dottips').click(function() {
@@ -90,6 +84,15 @@
             } else {
                 $('.close-dottips').fadeIn('fast');
             }
+        }
+
+        function _showTips() {
+            for(var key in tips) {
+                if(tips.hasOwnProperty(key)) {
+                    tips[key].show('fast');
+                }
+            }
+            _showCloseAllButton();
         }
 
         function startTour() {
@@ -137,13 +140,13 @@
         }
 
         var instanceMethods = {
-            render: function(highlight, side, quarter) {
+            render: function(highlight, side) {
                 highlight = typeof(highlight) === 'string' ? $(highlight) : highlight;
                 that.element.find('.boxtip > .close-tip').click(function() {
                     that.hide();
                     return false;
                 });
-                that.element.addClass('dt-' + side + ' dt-' + quarter);
+                that.element.addClass('dt-' + side);
                 $('body').append(that.element);
                 that.element.hover(that.bringFront, that.bringBack);
                 this.align(highlight);
@@ -153,11 +156,20 @@
                     bodyheight = $('body').height();
                 var left = highlight.offset().left,
                     top = highlight.offset().top;
-                
+                var w = that.element.find('.boxtip').outerWidth();
+                var x2 = w + left,
+                    y2 = that.element.find('.boxtip').outerHeight() + top;
+
                 that.element.css({
-                    top: top + that.xy.y,
-                    left: left + that.xy.x
+                    left: left + that.xy.x,
+                    top: top + that.xy.y
                 });
+                if(x2 > bodywidth) {
+                    left = (bodywidth) - x2;
+                    that.element.find('.boxtip').css({
+                        left: left + that.xy.x
+                    });
+                }
             },
             bringFront: function() {
                 that.element.css('z-index', 9999);

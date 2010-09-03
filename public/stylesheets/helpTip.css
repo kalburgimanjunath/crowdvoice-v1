@@ -19,17 +19,17 @@
 
 .helptip-dottip .dottip-container{ position: absolute; z-index: 20; }
 
-.helptip-dottip .arrowtip{ display: none; height: 100%; width: 100%; position: absolute; z-index: 30; background: transparent url('/images/dottip-blue-arrow.png') 0 0 no-repeat; }
+.helptip-dottip .arrowtip{ height: 100%; width: 100%; position: absolute; z-index: 30; background: transparent url('/images/dottip-blue-arrow.png') 0 0 no-repeat; }
 
 .helptip-dottip.dt-top .dottip-container,
 .helptip-dottip.dt-bottom .dottip-container{ height: 9px; width: 21px; }
 .helptip-dottip.dt-right .dottip-container,
 .helptip-dottip.dt-left .dottip-container{ height: 21px; width: 9px; }
 
-.helptip-dottip.dt-top .dottip-container{ background-position: -9px bottom; }
-.helptip-dottip.dt-right .dottip-container{ background-position: left -9px; }
-.helptip-dottip.dt-bottom .dottip-container{ background-position: 0 top; }
-.helptip-dottip.dt-left .dottip-container{ background-position: right 0; }
+.helptip-dottip.dt-top .arrowtip{ background-position: -9px bottom; }
+.helptip-dottip.dt-right .arrowtip{ background-position: left -9px; }
+.helptip-dottip.dt-bottom .arrowtip{ background-position: 0 top; }
+.helptip-dottip.dt-left .arrowtip{ background-position: right 0; }
 
 .helptip-dottip.dt-top .dottip-container{ bottom: 23px; }
 .helptip-dottip.dt-right .dottip-container{ left: 23px; }
@@ -41,23 +41,11 @@
 .helptip-dottip.dt-bottom .boxtip{ top: 6px; }
 .helptip-dottip.dt-left .boxtip{ right: 6px; }
 
-.helptip-dottip.dt-top.dt-a .boxtip,
-.helptip-dottip.dt-bottom.dt-a .boxtip{ left: 0; }
-.helptip-dottip.dt-top.dt-b .boxtip,
-.helptip-dottip.dt-bottom.dt-b .boxtip{ left: -10px; }
-.helptip-dottip.dt-top.dt-c .boxtip,
-.helptip-dottip.dt-bottom.dt-c .boxtip{ right: -10px; }
-.helptip-dottip.dt-top.dt-d .boxtip,
-.helptip-dottip.dt-bottom.dt-d .boxtip{ right: 0; }
+.helptip-dottip.dt-top .boxtip,
+.helptip-dottip.dt-bottom .boxtip{ left: -2px; }
 
-.helptip-dottip.dt-right.dt-a .boxtip,
-.helptip-dottip.dt-left.dt-a .boxtip{ top: 0; }
-.helptip-dottip.dt-right.dt-b .boxtip,
-.helptip-dottip.dt-left.dt-b .boxtip{ top: -10px; }
-.helptip-dottip.dt-right.dt-c .boxtip,
-.helptip-dottip.dt-left.dt-c .boxtip{ bottom: -10px; }
-.helptip-dottip.dt-right.dt-d .boxtip,
-.helptip-dottip.dt-left.dt-d .boxtip{ bottom: 0; }
+.helptip-dottip.dt-right .boxtip,
+.helptip-dottip.dt-left .boxtip{ top: -2px; }
 
 .helptip-dottip.dt-blue{ background: transparent url('/images/dottip-blue.png') 0 0 no-repeat; }
 .helptip-dottip.dt-blue .boxtip{ background-color: #d8e3f1; }

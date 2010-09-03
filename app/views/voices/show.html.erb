@@ -41,34 +41,40 @@
       $.helpTip({
           tips: [
               {
-                  title: 'Post content',
-                  text: 'This is where you can post content',
-                  highlight: '#content_url',
-                  side: 'right',
-                  quarter: 'c'
+                  title: 'Participate! Help us in moderating content',
+                  text: 'Decide if the content stays by voting the entries up and down according to your preference',
+                  highlight: '.participate-voting.ad',
+                  side: 'bottom',
+                  position: 'fixed',
+                  xy: {x: 600, y: 10}
               },
               {
-                  title: 'Blog widget',
-                  text: 'Show voices in your blog!',
-                  highlight: '.widget-menu.select',
+                  title: 'You can post articles, videos, and images here',
+                  text: 'Paste the link of the article, image URL or video that is relevant to this topic',
+                  highlight: '.voice-bar',
+                  side: 'top'
+              },
+              {
+                  title: 'You can view and filter your content here',
+                  text: 'Filter according to the type of content or by time it was submitted',
+                  highlight: '.filter.select.left > .button',
                   side: 'bottom',
-                  quarter: 'a',
-                  xy: {x: 10},
+                  xy: {x:50}
+              },
+              {
+                  title: 'Request a voice',
+                  text: 'Didn\'t find what you were looking for? Request it here',
+                  highlight: '.pageSlide-request',
+                  side: 'right',
+                  xy: {x: 20, y: -70},
                   position: 'fixed'
               },
               {
-                  title: 'Filter content',
-                  text: 'You can filter by date',
-                  highlight: '.filter.select.left > .button',
-                  side: 'right',
-                  quarter: 'b'
-              },
-              {
-                  title: 'View related tweets',
-                  text: 'View the streamline of the related tweets.',
-                  highlight: '.button.gray.show-tweets.right',
-                  side: 'bottom',
-                  quarter: 'd'
+                  title: 'You can search for other voices here',
+                  text: '',
+                  position: 'fixed',
+                  highlight: '.search-wrapper',
+                  side: 'top'
               }
           ]
       });
