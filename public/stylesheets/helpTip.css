@@ -10,7 +10,7 @@
 .helptip-modal .helptip-tuto ul li.tuto-ok{ float: right; }
 .helptip-modal .helptip-tuto ul li.tuto-ok a{ color: #fff; display: block; background-color: #009d83; background: -moz-linear-gradient(top, #00bea9, #008469); background: -webkit-gradient(linear, center top, center bottom, from(#00bea9), to(#008469)); filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#00bea9, endColorstr=#008469); -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#00bea9, endColorstr=#008469)"; border-top: 1px solid #87e6db; border-right: 1px solid #009f8d; border-bottom: 1px solid #051210; border-left: 1px solid #009f8d; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -khtml-border-radius: 2px; font-size: 16px; font-weight: bold; padding: 6px 9px; text-shadow: 0 -1px 1px #005041; box-shadow: inset 0 1px 1px #00bdaa; -moz-box-shadow: inset 0 1px 1px #00bdaa; -webkit-box-shadow: inset 0 1px 1px #00bdaa; }
 
-.helptip-dottip{ font-family: Helvetica, Arial, Verdana, sans-serif; position: absolute; z-index: 10; height: 23px; width: 23px; }
+.helptip-dottip{ display: none; font-family: Helvetica, Arial, Verdana, sans-serif; position: absolute; z-index: 10; height: 23px; width: 23px; }
 
 .helptip-dottip .boxtip{ position: absolute; clear: both; min-width: 250px; padding: 15px; box-shadow: inset 0 0 1px 1px #fff; -moz-box-shadow: inset 0 0 1px 1px #fff; -webkit-box-shadow: inset 0 0 1px 1px #fff; border: 2px solid #000; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; -khtml-border-radius: 3px; }
 .helptip-dottip .boxtip h4{ font-size: 14px; font-weight: bold; color: #101010; margin-bottom: 8px; white-space: nowrap; }
@@ -49,6 +49,4 @@
 
 .helptip-dottip.dt-blue{ background: transparent url('/images/dottip-blue.png') 0 0 no-repeat; }
 .helptip-dottip.dt-blue .boxtip{ background-color: #d8e3f1; }
-
-.close-dottips{ cursor: pointer; position: fixed; bottom: 0; right: 2px; display: block; height: 22px; line-height: 22px; color: #636363 !important; text-shadow: 0 2px 1px #ebebeb; padding: 6px 10px; background-color: #f6f6f6; background: -moz-linear-gradient(top, #f6f6f6, #d2cdcd); background: -webkit-gradient(linear, center top, center bottom, from(#f6f6f6), to(#d2cdcd)); filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#f6f6f6, endColorstr=#d2cdcd); -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#f6f6f6, endColorstr=#d2cdcd)"; box-shadow: inset 0 0 1px 1px #fff; -moz-box-shadow: inset 0 0 1px 1px #fff; -webkit-box-shadow: inset 0 0 1px 1px #fff; border: 3px solid #000; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; -khtml-border-radius: 3px; border-bottom: none; }
 

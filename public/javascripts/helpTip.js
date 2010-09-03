@@ -25,6 +25,7 @@
         }, options);
 
         var tips = {};
+        var steps = [];
 
         var cookiesJar = {
             addCookie: function(name, value, days) {
@@ -61,45 +62,36 @@
             return cookiesJar.readCookie('_helpTipPrompted') !== null;
         }
 
+        function _nextStep(previousTip) {
+            var next = steps[previousTip.nextStep];
+            if(next) {
+              tips[next].show('fast');
+            }
+        }
+        
+        function _queueStep(key) {
+            steps.push(key);
+        }
+
         function _buildTips() {
             for(var i = 0; i < settings.tips.length; i++) {
                 if(!tips[settings.tips[i].highlight]) {
+                    _queueStep(settings.tips[i].highlight);
                     settings.tips[i].xy = settings.tips[i].xy || {};
                     settings.tips[i].xy.x = settings.tips[i].xy.x || 0;
                     settings.tips[i].xy.y = settings.tips[i].xy.y || 0;
-                    var tip = new $.helpTip.Tip(settings.tips[i].title, settings.tips[i].text, settings.tips[i].xy, settings.tips[i].position);
+                    var tip = new $.helpTip.Tip(settings.tips[i].title, settings.tips[i].text, settings.tips[i].xy, settings.tips[i].position, _nextStep, i+1);
                     tip.render(settings.tips[i].highlight, settings.tips[i].side || 'bottom');
                     tips[settings.tips[i].highlight] = tip;
                 }
             }
         }
-        
-        function _showCloseAllButton() {
-            if($('.close-dottips').size() === 0) {
-                $('body').append('<a class="close-dottips">Close all help indicators</a>');
-                $('.close-dottips').click(function() {
-                    $('.helptip-dottip').add(this).fadeOut('fast');
-                    return false;
-                });
-            } else {
-                $('.close-dottips').fadeIn('fast');
-            }
-        }
-
-        function _showTips() {
-            for(var key in tips) {
-                if(tips.hasOwnProperty(key)) {
-                    tips[key].show('fast');
-                }
-            }
-            _showCloseAllButton();
-        }
 
         function startTour() {
             _buildTips();
             $.helpTip.overlay.hide();
-            _showTips();
             _setTtlCookie();
+            _nextStep({nextStep: 0});
         }
 
         function _init() {
@@ -121,7 +113,7 @@
         _init();
     };
 
-    $.helpTip.Tip = function(title, text, xy, position) {
+    $.helpTip.Tip = function(title, text, xy, position, onClose, nextStep) {
         var that = this;
         var template = '\
           <div class="helptip-dottip dt-blue">\
@@ -144,6 +136,9 @@
                 highlight = typeof(highlight) === 'string' ? $(highlight) : highlight;
                 that.element.find('.boxtip > .close-tip').click(function() {
                     that.hide();
+                    if(typeof that.onClose === 'function') {
+                        that.onClose(that);
+                    }
                     return false;
                 });
                 that.element.addClass('dt-' + side);
@@ -185,7 +180,7 @@
             }
         };
 
-        $.extend(this, instanceMethods, {xy: xy});
+        $.extend(this, instanceMethods, {xy: xy, onClose: onClose, nextStep: nextStep});
 
         return {
             data: {
