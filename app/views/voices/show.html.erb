@@ -1,8 +1,8 @@
 <% facebook_sharer_meta_tags(@voice) %>
 <% keywords_meta_tag(@voice) %>
-<% javascript :voice, 'jquery.ba-url', 'cpy-blog-widget'%>
+<% javascript :voice, 'jquery.ba-url', 'cpy-blog-widget', 'helpTip' %>
 <% content_for(:head) do %>
-<%= stylesheet_link_tag 'ajax-search' %>
+<% stylesheet 'ajax-search', 'helpTip' %>
 <script type="text/javascript">
   Crowdvoice.Voice.currentId = '<%= @voice.slug %>';
   $(function() {
@@ -37,6 +37,42 @@
           close_active_image: "<%= image_path 'btn-close-dark.png' %>",
           close_inactive_image: "<%= image_path 'btn-magnify-dark.png' %>"
       });
+
+      $.helpTip({
+          tips: [
+              {
+                  title: 'Post content',
+                  text: 'This is where you can post content',
+                  highlight: '#content_url',
+                  side: 'right',
+                  quarter: 'c'
+              },
+              {
+                  title: 'Blog widget',
+                  text: 'Show voices in your blog!',
+                  highlight: '.widget-menu.select',
+                  side: 'bottom',
+                  quarter: 'a',
+                  xy: {x: 10},
+                  position: 'fixed'
+              },
+              {
+                  title: 'Filter content',
+                  text: 'You can filter by date',
+                  highlight: '.filter.select.left > .button',
+                  side: 'right',
+                  quarter: 'b'
+              },
+              {
+                  title: 'View related tweets',
+                  text: 'View the streamline of the related tweets.',
+                  highlight: '.button.gray.show-tweets.right',
+                  side: 'bottom',
+                  quarter: 'd'
+              }
+          ]
+      });
+      
   });
 </script>
 <link rel="alternate" type="application/rss+xml" title="RSS" href="<%= voice_url(@voice, :rss) %>" />
