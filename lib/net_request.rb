@@ -60,7 +60,7 @@ class << NetRequest
   #
   def get(url, headers = {})
     return nil unless valid_url? url
-    response = get_response(url, headers)
+    response = get_safe_response(url, headers)
     response.body if response
   end
 

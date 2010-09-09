@@ -98,12 +98,7 @@ class Content < ActiveRecord::Base
 
   # Saves width and height for the passed file
   def setup_width_and_height(file)
-    @should_validate_dimensions = true
     self.update_attributes Image.dimensions(file)
-  end
-
-  def should_validate_dimensions?
-    @should_validate_dimensions
   end
 
   private

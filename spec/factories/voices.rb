@@ -9,5 +9,5 @@ Factory.define :voice do |f|
   # FIXME: Get Rails.root in a fashioner way
   f.background_image File.new(File.dirname(__FILE__) + '/../factories/images/voice-bg.jpg')
   f.header_background_image File.new(File.dirname(__FILE__) + '/../factories/images/IranElection-WikimediaCommons.jpg')
-  f.sequence(:color) { |n| "green#{n}" }
+  f.color "green"
 end

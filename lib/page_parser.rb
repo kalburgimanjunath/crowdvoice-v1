@@ -167,7 +167,7 @@ class PageParser
   def expand_relative_path(path)
     path.strip!
     return path if path =~ /^https?:\/\//
-    CGI.unescape URI.join("http://#{@url_host}", CGI.escape(path)).to_s
+    URI.join("http://#{@url_host}", URI.encode(path)).to_s
   end
 
   # HTML document text scanner

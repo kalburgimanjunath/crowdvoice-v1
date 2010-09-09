@@ -19,6 +19,7 @@ describe Content do
   end
 
   should 'be valid' do
+    @content = Factory.build :link
     @content.should be_valid
   end
 
@@ -113,11 +114,14 @@ describe Content do
   end
 
   should 'have a unique URL within the same voice' do
-    Factory :link, :url => 'http://freshout.us', :voice => @content.voice
-    @content.url = 'http://freshout.us'
+    url = "http://freshout.us"
+    voice = Factory :voice
+    Factory :link, :url => url, :voice => voice
+
+    @content = Factory.build :link, :url => url, :voice => voice
     @content.should_not be_valid
 
-    @content.voice = Factory(:voice)
+    @content = Factory.build :link, :url => url, :voice => Factory(:voice)
     @content.should be_valid
   end
 

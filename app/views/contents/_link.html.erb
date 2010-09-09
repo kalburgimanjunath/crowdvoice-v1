@@ -2,7 +2,7 @@
 <div class="rounded white box thumb left">
   <div class="hl"><div class="hr"><div class="hc"></div></div></div>
   <div class="ml"><div class="mr"><div class="mc">
-    <%= image_tag link.thumbnail_url, :height => link.thumbnail_height.floor, :width => link.thumbnail_width.floor, :class => "voice_content_link_image" unless link.thumbnail_url.nil? %>
+    <%= image_tag link.preview_url_or_default, :height => link.thumbnail_height.floor, :width => link.thumbnail_width.floor, :class => "voice_content_link_image" unless link.thumbnail_url.nil? %>
   </div></div></div>
   <div class="fl"><div class="fr"><div class="fc"></div></div></div>
 </div>

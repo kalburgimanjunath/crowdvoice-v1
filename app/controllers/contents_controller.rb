@@ -78,26 +78,6 @@ class ContentsController < ApplicationController
     end
   end
 
-# # Updates the url for a link's image
-# #
-# # TODO: Security warning, anybody can change images. since users
-# # don't need to login to post links.
-# #
-# # This is defninitely an issue that needs to be taken care off.
-# # but we will leave it as it is for now, because of time limitations.
-# #
-# def update_url
-#   jr, id, url = JsonResponse.new, params[:id], params[:url]
-#   return render(:text => jr.to_js('test')) unless Content.exists?(id)
-#   return render(:text => jr.to_js('test')) unless url
-#   Link.find(id).update_attribute(:thumbnail_url, url)
-#   jr.positive
-#   render :text => jr.to_js('test')
-# end
-
-  #
-  #
-  #
   def remote_page_info
     url = params[:url]
     info = {}

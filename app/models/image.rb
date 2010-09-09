@@ -103,8 +103,7 @@ class Image < Content
   def self.fetch_remote_image(url)
     response = NetRequest.get_safe_response(url)
     if response.present? && response.content_type =~ /image/i
-      filename, ext = extract_basename_and_extension(url)
-      tmp_file = Tempfile.new("#{filename}.#{ext}")
+      tmp_file = Tempfile.new(URI.decode(File.basename(url)))
       tmp_file.write response.body
       tmp_file
     end
@@ -113,7 +112,7 @@ class Image < Content
   # Extracts the extension of the image url or jpg by default
   def self.extract_basename_and_extension(url)
     basename, ext = url.scan(/.*\/(.*)\.(\w+).*?$/).flatten
-    [(basename.blank? ? 'dummy_filename' : basename), (ext.blank? ? 'jpg' : ext)]
+    [(basename.blank? ? 'dummy_filename' : URI.decode(basename)), (ext.blank? ? 'jpg' : ext)]
   end
 
   private
