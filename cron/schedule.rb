@@ -39,3 +39,9 @@ end
 every 1.days, :at => '11:00 pm' do
   command 'cd /data/crowdvoice/current && rake voices:cleanup' 
 end
+
+# Fix bad thumbnails
+every 1.hour do
+  command 'cd /data/crowdvoice/current && rake fix_thumbnails'
+end
+
