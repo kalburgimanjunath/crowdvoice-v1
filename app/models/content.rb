@@ -165,17 +165,18 @@ class Content < ActiveRecord::Base
   end
 
   def attempt_to_save_image_dimensions_from_remote(file)
-    path = if URI(file).absolute?
-      image = Image.fetch_remote_image(file)
-      if image.nil?
-        self.thumbnail_url = PageParser::DEFAULT_IMAGE
-      end
-      image.close
-      image.path
-    else
-      file
-    end
-    setup_width_and_height path
+    # path = if URI(file).absolute?
+    #   image = Image.fetch_remote_image(file)
+    #   if image.nil?
+    #     self.thumbnail_url = PageParser::DEFAULT_IMAGE
+    #   else
+    #     image.close
+    #     image.path
+    #   end
+    # else
+    #   file
+    # end
+    setup_width_and_height file
   end
 
 end
