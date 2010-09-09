@@ -41,7 +41,7 @@ every 1.days, :at => '11:00 pm' do
 end
 
 # Fix bad thumbnails
-every 1.hour do
+every 20.minutes do
   command 'cd /data/crowdvoice/current && rake fix_thumbnails'
 end
 
