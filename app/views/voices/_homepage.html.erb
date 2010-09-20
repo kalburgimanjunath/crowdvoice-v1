@@ -1,12 +1,14 @@
 <% content_for(:head) do%>
 <%= stylesheet_link_tag 'ajax-search' %>
 <script type="text/javascript" charset="utf-8">
+    var voice_locations = <%=raw @all_voices %>;
     $(function() {
         new Crowdvoice.AjaxSearch($('#search_text_field'), $('.input-search'), 
             { preloader: $('.search_ajax'), close_container: $('.search_close'), close_active_image: "<%= image_path 'btn-close.png' %>", close_inactive_image: "<%= image_path 'btn-magnify.png' %>" }
         );
     });
 </script>
+<% javascript "voices_map" %>
 <% end %>
 <div class="homepage">
     <div class="voices-wrapper aligned">
@@ -93,7 +95,5 @@
     </div>
 </div>
 <div class="footer2">
-    <div class="aligned">
-        <%= render :partial => "all_voices" %>
-    </div>
+  <div id="voices_map"></div>
 </div>

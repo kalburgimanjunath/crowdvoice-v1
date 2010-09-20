@@ -1,15 +1,15 @@
 <div class="voices-list">
-	<a name="all-voices"></a>
-	<% unless @all_voices.empty? %>
-		<ul class="left">
-			<% for voice in @all_voices[0] %>
-				<li><a href="<%= voice_path(voice) %>"><%= voice.title %> <span>- <%= voice.location %></span></a></li>
-			<% end %>
-		</ul>
-		<ul class="left">
-			<% for voice in @all_voices[1] %>
-				<li><a href="<%= voice_path(voice) %>"><%= voice.title %> <span>- <%= voice.location %></span></a></li>
-			<% end %>
-		</ul>
-	<% end %>
+    <a name="all-voices"></a>
+    <% unless @all_voices.empty? %>
+        <ul class="left">
+            <% for voice in @all_voices[0] %>
+                <li><a href="<%= voice_path(voice) %>"><%= voice.title %> <span>- <%= voice.location %></span></a></li>
+            <% end %>
+        </ul>
+        <ul class="left">
+            <% for voice in @all_voices[1] %>
+                <li><a href="<%= voice_path(voice) %>"><%= voice.title %> <span>- <%= voice.location %></span></a></li>
+            <% end %>
+        </ul>
+    <% end %>
 </div>

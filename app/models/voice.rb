@@ -169,6 +169,7 @@ class Voice < ActiveRecord::Base
     end
   end
 
+  # FIXME: Is throwing an error when croping
   def reprocess_background_image
     background_image.reprocess!
   end
