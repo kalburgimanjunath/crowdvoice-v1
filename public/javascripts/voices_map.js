@@ -2,7 +2,7 @@ var map;
 
 function initialize() {
   var initialLocation;
-  var geocoder;
+  var geocoder = new google.maps.Geocoder();
   var options = {
     zoom: 4,
     mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -28,18 +28,17 @@ function initialize() {
     handleNoGeoLocation();
   }
 
-  geocoder = new google.maps.Geocoder();
-
   for(var j = 0; j < voice_locations.length; j++) {
     var voices = voice_locations[j];
     for(var country in voices) {
       if(voices.hasOwnProperty(country)) {
-        var content = '';
+        var content = '<div style="padding-right: 15px;">';
         for(var i = 0; i < voices[country].length; i++) {
-          var link = ' - <a href="/' + voices[country][i].slug + '">View voice</a><br/>';
-          content += '<strong>' + voices[country][i].title + '</strong>' + link;
+          var link = ' - <a href="/' + voices[country][i].slug + '">View voice</a>';
+          content += '<p><strong>' + voices[country][i].title + '</strong>' + link + '</p>';
         }
-        var info = new google.maps.InfoWindow({content: content, maxWidth: 300});
+        content += '</div>';
+        var info = new google.maps.InfoWindow({content: content, maxWidth: 400});
         geocoder.geocode({address: country}, function(results) {
           if(results) {
             var marker = new google.maps.Marker({
