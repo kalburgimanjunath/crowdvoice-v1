@@ -1,3 +1,8 @@
+a:focus { 
+    outline: none; 
+}
+button:-moz-focus-inner { border: 0; }
+
 .container {
   width: 960px;
   margin: 0 auto;

@@ -1,14 +1,14 @@
 <% content_for(:head) do%>
 <%= stylesheet_link_tag 'ajax-search' %>
 <script type="text/javascript" charset="utf-8">
-    var voice_locations = <%=raw @all_voices %>;
+    var voice_locations = <%=raw @grouped_voices %>;
     $(function() {
         new Crowdvoice.AjaxSearch($('#search_text_field'), $('.input-search'), 
             { preloader: $('.search_ajax'), close_container: $('.search_close'), close_active_image: "<%= image_path 'btn-close.png' %>", close_inactive_image: "<%= image_path 'btn-magnify.png' %>" }
         );
     });
 </script>
-<% javascript "voices_map" %>
+<% javascript "jquery.scrollTo", "voices_map" %>
 <% end %>
 <div class="homepage">
     <div class="voices-wrapper aligned">
@@ -85,16 +85,27 @@
 </div>
 <div class="footer">
     <div class="aligned">
-      <div class="left">
+      <div class="right">
         <%= link_to "Request a voice", APP_CONFIG['wufoo_url'], :target => "_blank", :class => "request-link pageSlide" %>
       </div>
-      <div class="right about">
-        <strong>CrowdVoice</strong> is a user-powered service that tracks voices of protest from around the world. Raise your voice for causes you support with information you submit.
-          <%= link_to 'Learn More', about_path %>
+      <div class="left about">
+        <strong>CrowdVoice is a user-powered service that tracks voices of protest from around the world. Raise your voice for causes you support with information you submit.
+          <%= link_to 'Learn More &#9658;'.html_safe, about_path %></strong>
       </div>
     </div>
 </div>
+<div class="mid-footer">
+  <div class="aligned">
+    <div class="left title">VOICE INDEX</div>
+    <div class="right">
+      <%= link_to 'Voices on the map', '#all-voices', :class => 'show-map' %>
+      <%= link_to 'Back to list view', '#all-voices', :class => 'hide-map' %>
+    </div>
+  </div>
+</div>
 <div class="footer2">
-  <div id="voices_map"></div>
-  <a name="all-voices"></a>
+  <div id="voices_map" style="display: none"></div>
+  <div class="aligned">
+    <%= render :partial => "all_voices" %>
+  </div>
 </div>

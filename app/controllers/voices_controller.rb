@@ -6,7 +6,8 @@ class VoicesController < ApplicationController
   def index
     if params[:search].blank?
       @voices = Voice.visible
-      @all_voices = Voice.all.group_by(&:location).map do |loc, voices|
+      @all_voices = find_all_voices
+      @grouped_voices = Voice.all.group_by(&:location).map do |loc, voices|
         { loc => voices.map { |l| { :slug => l.slug, :title => l.title } }}
       end.to_json
     else

@@ -1,55 +1,69 @@
 html, body {background-color: #212121;overflow-x: hidden; }
-body,ul,p,h1,h2,h3,form		{margin: 0; padding: 0}
-body											{font-family: Arial, Helvetica; font-size: 12px;}
-ul, ul li									{list-style: none}
-img												{border: none}
-a													{text-decoration: none;}
-a:hover										{text-decoration: underline}
-.clear 										{clear:both}
-.left											{float: left;}
-.right										{float: right;}
-.hide-text 								{font-size: 0; line-height: 0; display: block; text-indent: -9999px;}
-.aligned									{width: 800px; margin: 0 auto}
-.voices-wrapper						{position: relative;}
-#slides 									{position:relative; width:800px; height:594px}
-.voices										{width: 4000px; height: 594px; position:relative; left:0; top:0}
-.voices  > li							{width: 800px; height: 594px; float: left}
-.shadow										{width: 800px; height: 594px; background: url('/images/pattern.png'); position: absolute; top: 0}
-.shadow.left							{left: -800px}
-.shadow.right							{right: -800px}
-.content									{position: absolute; top: 0; left: 0; width: 100%; height: 100%}
-.sidebar									{width: 154px;margin-left: 20px;}
-.sidebar > h1							{height: 216px; background: url('/images/crowdvoice-tracking-voices-of-protest.png') no-repeat; text-indent: -9999px; font-size: 20px; text-align: center; margin-bottom: 15px}
-.sidebar p								{width: 128px; padding: 0 13px; color: #444444; line-height: 15px}
-.red-pattern							{height: 14px; background: url('/images/red-pattern.jpg')}
-.active-voices						{position: absolute; right: 0; top: 3px; float: right; overflow: hidden}
-.active-voices > div			{background-color: rgba(210, 0, 18, .89); width: 26px; height: 117px; float: right; text-indent: -9999px;  filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#CFD20012', EndColorStr='#CFD20012');}
+body,ul,p,h1,h2,h3,form    {margin: 0; padding: 0}
+body                      {font-family: Arial, Helvetica; font-size: 12px;}
+ul, ul li                  {list-style: none}
+img                        {border: none}
+a                          {text-decoration: none;}
+a:hover                    {text-decoration: underline}
+.clear                     {clear:both}
+.left                      {float: left;}
+.right                    {float: right;}
+.hide-text                 {font-size: 0; line-height: 0; display: block; text-indent: -9999px;}
+.aligned                  {width: 800px; margin: 0 auto}
+.voices-wrapper            {position: relative;}
+#slides                   {position:relative; width:800px; height:594px}
+.voices                    {width: 4000px; height: 594px; position:relative; left:0; top:0}
+.voices  > li              {width: 800px; height: 594px; float: left}
+.shadow                    {width: 800px; height: 594px; background: url('/images/pattern.png'); position: absolute; top: 0}
+.shadow.left              {left: -800px}
+.shadow.right              {right: -800px}
+.content                  {position: absolute; top: 0; left: 0; width: 100%; height: 100%}
+.sidebar                  {width: 154px;margin-left: 20px;}
+.sidebar > h1              {height: 216px; background: url('/images/crowdvoice-tracking-voices-of-protest.png') no-repeat; text-indent: -9999px; font-size: 20px; text-align: center; margin-bottom: 15px}
+.sidebar p                {width: 128px; padding: 0 13px; color: #444444; line-height: 15px}
+.red-pattern              {height: 14px; background: url('/images/red-pattern.jpg')}
+.active-voices            {position: absolute; right: 0; top: 3px; float: right; overflow: hidden}
+.active-voices > div      {background-color: rgba(210, 0, 18, .89); width: 26px; height: 117px; float: right; text-indent: -9999px;  filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#CFD20012', EndColorStr='#CFD20012');}
 .active-voices > div > div{height: 100%;  background-image: url('/images/top-voices.png'); background-repeat: no-repeat; background-position: 8px 14px; }
-.active-voices h2					{font-size: 18px; font-weight: normal; color: #ffffff; white-space: nowrap; width: 105px; height: 26px; float: left; margin-top: 91px; padding-left: 12px; margin-left: 26px; line-height: 1.5; -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); -moz-transform-origin: 0 100%; -webkit-transform-origin: 0 100%;}
-.active-voices ul					{float: right}
-.active-voices ul li			{float: right; clear: both; white-space: nowrap; background-color: rgba(255, 255, 255, .9); margin-bottom: 3px; height: 21px; line-height: 2; filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#E5FFFFFF', EndColorStr='#E5FFFFFF');}
-.active-voices ul li a		{padding: 0 12px; display: block; color: #444444; font-weight: bold}
-.active-voices .active		{background-color: rgba(210, 0, 18, .76); filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#C2D20012', EndColorStr='#C2D20012');}
-.active-voices .active a	{background: url('/images/black-arrow.png') no-repeat 7px 5px; color: #ffffff; padding-left: 21px;}
-.more-voices 							{position: absolute; right: 26px; top:132px;}
-.fb-like 							{position: absolute; right: 26px; top:162px;}
-.search-wrapper						{position: absolute; bottom: 140px; left: 194.5px; width: 411px; padding-left: 11px; background: url('/images/search-bg.png') no-repeat}
-.search										{background: url('/images/search-bg.png') no-repeat right -132px; width: 398px; padding-right: 11px; margin: 0}
-.search > div							{background: url('/images/search-bg.png') repeat-x 0 -66px; height: 46px; padding: 10px 0}
-.input-search-wrapper			{background: url('/images/search-bg.png') no-repeat 0 -198px; padding-left: 7px; width: 393px; float: left; margin-right: 5px;}
+.active-voices h2          {font-size: 18px; font-weight: normal; color: #ffffff; white-space: nowrap; width: 105px; height: 26px; float: left; margin-top: 91px; padding-left: 12px; margin-left: 26px; line-height: 1.5; -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); -moz-transform-origin: 0 100%; -webkit-transform-origin: 0 100%;}
+.active-voices ul          {float: right}
+.active-voices ul li      {float: right; clear: both; white-space: nowrap; background-color: rgba(255, 255, 255, .9); margin-bottom: 3px; height: 21px; line-height: 2; filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#E5FFFFFF', EndColorStr='#E5FFFFFF');}
+.active-voices ul li a    {padding: 0 12px; display: block; color: #444444; font-weight: bold}
+.active-voices .active    {background-color: rgba(210, 0, 18, .76); filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#C2D20012', EndColorStr='#C2D20012');}
+.active-voices .active a  {background: url('/images/black-arrow.png') no-repeat 7px 5px; color: #ffffff; padding-left: 21px;}
+.more-voices               {position: absolute; right: 26px; top:132px;}
+.fb-like               {position: absolute; right: 26px; top:162px;}
+.search-wrapper            {position: absolute; bottom: 140px; left: 194.5px; width: 411px; padding-left: 11px; background: url('/images/search-bg.png') no-repeat}
+.search                    {background: url('/images/search-bg.png') no-repeat right -132px; width: 398px; padding-right: 11px; margin: 0}
+.search > div              {background: url('/images/search-bg.png') repeat-x 0 -66px; height: 46px; padding: 10px 0}
+.input-search-wrapper      {background: url('/images/search-bg.png') no-repeat 0 -198px; padding-left: 7px; width: 393px; float: left; margin-right: 5px;}
 
 .ajax-loader .search_close {position: absolute; top: 11px; right: 12px; cursor: pointer;}
 .ajax-loader .search_ajax {position: absolute; top: 14px; right: 14px;}
 
-.input-search							{background: url('/images/search-bg.png') no-repeat right -288px; padding-right: 7px; width: 383px; float: left}
-.input-search input				{background: url('/images/search-bg.png') repeat-x 0 -243px; height: 45px; padding-bottom: 0; padding-top: 0; width: 383px; border: none; outline: none; font-size: 22px; font-family: 'Arial'; color: #a9a9a9; margin: 0; overflow: hidden; float: left; line-height: 2\9;}
-.request-link							{background: url('/images/request-button.png') 0 0 no-repeat; padding: 9px 19px; font-size: 14px; display: block; color: #b3b3b3 !important; text-transform: uppercase;}
-.request-link:hover							{background-position: 0 -34px; text-decoration: none;}
-.footer										{background: #1b1b1b url('/images/footer-separation.png') 0 0 repeat-x; padding-top: 15px; padding-bottom: 10px; font-size: 12px; color: #737373; overflow: hidden;}
+.input-search              {background: url('/images/search-bg.png') no-repeat right -288px; padding-right: 7px; width: 383px; float: left}
+.input-search input        {background: url('/images/search-bg.png') repeat-x 0 -243px; height: 45px; padding-bottom: 0; padding-top: 0; width: 383px; border: none; outline: none; font-size: 22px; font-family: 'Arial'; color: #a9a9a9; margin: 0; overflow: hidden; float: left; line-height: 2\9;}
+.request-link              {background: url('/images/request-button.png') 0 0 no-repeat; padding: 10px 24px; font-size: 14px; display: block; color: #fff !important; font-weight: bold; text-transform: uppercase;}
+.request-link:hover              {background-position: 0 -36px; text-decoration: none;}
+.request-link:active              {background-position: 0 -72px; text-decoration: none;}
+.footer                    {background-color: #282828; padding: 15px 0; border: 1px solid #4b4b4b; border-width: 1px 0; font-size: 12px; color: #737373; overflow: hidden;}
+.mid-footer                    {background-color: #333; padding: 15px 0; border-bottom: 1px solid #2a2a2a; font-size: 18px; color: #aaa; overflow: hidden;}
+.mid-footer .left {font-weight: bold;}
+.mid-footer .right > .show-map {background: url('/images/map-btn.png') no-repeat 0 0; padding: 7px 29px 7px 15px; font-size: 11px; color: #b3b3b3; display: block; text-transform: uppercase; font-weight: bold;}
+.mid-footer .right > .show-map:hover {background-position: 0 -28px; text-decoration: none;}
+.mid-footer .right > .show-map:active {background-position: 0 -56px; text-decoration: none;}
+.mid-footer .right > .hide-map {background: url('/images/index-btn.png') no-repeat 0 0; padding: 7px 16px 7px 25px; font-size: 11px; color: #b3b3b3; display: none; text-transform: uppercase; font-weight: bold;}
+.mid-footer .right > .hide-map:hover {background-position: 0 -28px; text-decoration: none;}
+.mid-footer .right > .hide-map:active {background-position: 0 -56px; text-decoration: none;}
 .footer2 {background: transparent; font-size: 12px; color: #737373; overflow: hidden;}
-.footer > .aligned > .about { width: 475px; text-align: right; line-height: 1.4em; }
-.footer > .aligned > .about > a {color: #d3d3d3}
-#next											{display: none}
+.footer > .aligned > .about { width: 516px; line-height: 1.4em; }
+.footer > .aligned > .about > strong > a {color: #d3d3d3}
+#next                      {display: none}
+
+.country-voices { padding-right: 15px; }
+.country-voices li { list-style-type: disc; margin-left: 15px; padding: 10px 0; border-bottom: 1px solid #ebebeb; }
+.country-voices li:last-child { border-bottom: none; }
+.country-voices li a { color: #3a689b !important; font-weight: bold; font-size: 13px; }
 
 .tooltip{ position: relative; z-index: 11; }
 .tooltip > .dropdown{ position: absolute; display: none; }
@@ -76,10 +90,10 @@ a:hover										{text-decoration: underline}
 .content .copyright { display: block; width: 10px; height: 10px; position: absolute; bottom: 8px; right: 12px; cursor: pointer; color: #fff; z-index: 9999; }
 
 .voices-list { }
-.voices-list ul { list-style-position:outside; width: 380px; padding-left: 15px; margin: 20px 0;}
-.voices-list ul li { list-style: disc; font-size: 12px; margin-bottom: 5px;}
-.voices-list ul li a { color: #848484; }
-.voices-list ul li a span { color: #4f4e4e; }
+.voices-list ul { list-style-position:outside; width: 360px; margin: 30px 20px;}
+.voices-list ul li { list-style: disc; font-size: 12px; margin-bottom: 15px;}
+.voices-list ul li a { color: #aaa; }
+.voices-list ul li a span { color: #666; font-weight: bold; }
 .voices-list ul li a:hover { color: #fff; text-decoration: none;}
 .voices-list ul li a:hover span { color: #fff; text-decoration: none; }
 
