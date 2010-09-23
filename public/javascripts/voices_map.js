@@ -1,42 +1,57 @@
 var map;
+var geocoder;
+var infos = [];
 
 function initialize() {
   var initialLocation = new google.maps.LatLng(0 ,0);
-  var geocoder = new google.maps.Geocoder();
   var options = {
     zoom: 2,
     center: initialLocation,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    scrollwheel: false
   };
+  geocoder = new google.maps.Geocoder();
   map = new google.maps.Map($('#voices_map')[0], options);
 
   for(var j = 0; j < voice_locations.length; j++) {
     var voices = voice_locations[j];
     for(var country in voices) {
       if(voices.hasOwnProperty(country)) {
-        var content = '<ul class="country-voices">';
-        for(var i = 0; i < voices[country].length; i++) {
-          var link = ' <a href="/' + voices[country][i].slug + '">' + voices[country][i].title + '</a>';
-          content += '<li>' + link + '</li>';
-        }
-        content += '</ul>';
-        var info = new google.maps.InfoWindow({content: content, maxWidth: 400});
-        geocoder.geocode({address: country}, function(results) {
-          if(results) {
-            var marker = new google.maps.Marker({
-              icon: "/images/pin.png",
-              map: map,
-              position: results[0].geometry.location,
-              title: voices[country].length + ' voices in ' + country
-            });
-            google.maps.event.addListener(marker, 'click', function() {
-              info.open(map, marker);
-            });
-          }
-        });
+        geocodeVoice(country, voices[country]);
+        
       }
     }
   }
+}
+
+function geocodeVoice(country, voices) {
+  var content = '<ul class="country-voices">';
+  for(var i = 0; i < voices.length; i++) {
+    var link = ' <a href="/' + voices[i].slug + '">' + voices[i].title + '</a>';
+    content += '<li>' + link + '</li>';
+  }
+  content += '</ul>';
+  var info = new google.maps.InfoWindow({content: content, maxWidth: 400});
+  infos.push(info);
+  geocoder.geocode({address: country}, function(results, statusResponse) {
+    if(statusResponse == "OK" && !results[0].partial_match) {
+      var marker = new google.maps.Marker({
+        icon: "/images/pin.png",
+        map: map,
+        position: results[0].geometry.location,
+        title: voices.length + ' voices in ' + country
+      });
+      var label = new MarkerLabel({map: map, label: voices.length});
+      label.bindTo('position', marker, 'position');
+      label.bindTo('text', marker, 'position');
+      google.maps.event.addListener(marker, 'click', function() {
+        for(var k = 0; k < infos.length; k++) {
+          infos[k].close();
+        }
+        info.open(map, marker);
+      });
+    }
+  });
 }
 
 function loadScript() {
@@ -53,7 +68,7 @@ $(function() {
     $('.voices-list, .show-map').hide();
     $('.mid-footer .title').text('VOICES ON THE MAP');
     if(!map) {
-      loadScript();
+      initialize();
     }
     $.scrollTo('#voices_map', 800);
   });
