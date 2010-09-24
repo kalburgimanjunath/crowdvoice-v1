@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user, :logged_in?
-  #before_filter :qa_authenticate, :unless => "Rails.env.development?"
 
   private
   
@@ -12,12 +11,6 @@ class ApplicationController < ActionController::Base
   end
   
   protected
-  
-  def qa_authenticate
-    authenticate_or_request_with_http_basic do |email, password|
-      email == "admin@crowdvoice.org" && password == "123456"
-    end
-  end
   
   # Return a short URL
   def shorten_url(url)
@@ -47,14 +40,16 @@ class ApplicationController < ActionController::Base
   def login_required
     unless logged_in?
       session[:back] = request.fullpath
-      redirect_to login_path, :alert => "You need to log in first."
+      flash.now[:alert] = "You need to log in first."
+      redirect_to login_path
     end
   end
   
   # Requires the current logged in user to be an administrator
   def admin_required
     unless current_user.admin?
-      redirect_to root_path, :alert => "You need to be an administrator to do this."
+      flash.now[:alert] = "You need to be an administrator to do this."
+      redirect_to root_path
     end
   end
 end

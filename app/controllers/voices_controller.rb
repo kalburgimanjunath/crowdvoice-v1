@@ -8,7 +8,7 @@ class VoicesController < ApplicationController
       @voices = Voice.visible
       @all_voices = find_all_voices
       @grouped_voices = Voice.all.group_by(&:location).map do |loc, voices|
-        { loc => voices.map { |l| { :slug => l.slug, :title => l.title } }}
+        { loc => voices.map { |l| { :slug => l.slug, :title => l.title, :latitude => l.latitude, :longitude => l.longitude } }}
       end.to_json
     else
       @search = params[:search]

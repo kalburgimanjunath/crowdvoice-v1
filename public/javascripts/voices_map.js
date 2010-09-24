@@ -18,14 +18,31 @@ function initialize() {
     for(var country in voices) {
       if(voices.hasOwnProperty(country)) {
         geocodeVoice(country, voices[country]);
-        
       }
     }
   }
 }
 
+function createPin(position, title, labeltext, infowindow) {
+  var marker = new google.maps.Marker({
+    icon: "/images/pin.png",
+    map: map,
+    position: position,
+    title: title
+  });
+  var label = new MarkerLabel({map: map, label: labeltext});
+  label.bindTo('position', marker, 'position');
+  google.maps.event.addListener(marker, 'click', function() {
+    for(var k = 0; k < infos.length; k++) {
+      infos[k].close();
+    }
+    infowindow.open(map, marker);
+  });
+}
+
 function geocodeVoice(country, voices) {
   var content = '<ul class="country-voices">';
+  var title = voices.length + ' voice(s) in ' + country;
   for(var i = 0; i < voices.length; i++) {
     var link = ' <a href="/' + voices[i].slug + '">' + voices[i].title + '</a>';
     content += '<li>' + link + '</li>';
@@ -33,25 +50,16 @@ function geocodeVoice(country, voices) {
   content += '</ul>';
   var info = new google.maps.InfoWindow({content: content, maxWidth: 400});
   infos.push(info);
-  geocoder.geocode({address: country}, function(results, statusResponse) {
-    if(statusResponse == "OK" && !results[0].partial_match) {
-      var marker = new google.maps.Marker({
-        icon: "/images/pin.png",
-        map: map,
-        position: results[0].geometry.location,
-        title: voices.length + ' voices in ' + country
-      });
-      var label = new MarkerLabel({map: map, label: voices.length});
-      label.bindTo('position', marker, 'position');
-      label.bindTo('text', marker, 'position');
-      google.maps.event.addListener(marker, 'click', function() {
-        for(var k = 0; k < infos.length; k++) {
-          infos[k].close();
-        }
-        info.open(map, marker);
-      });
-    }
-  });
+  if(voices[0].latitude !== null && voices[0].longitude !== null) {
+    var pos = new google.maps.LatLng(voices[0].latitude, voices[0].longitude);
+    createPin(pos, title, voices.length, info);
+  } else {
+    geocoder.geocode({address: country}, function(results, statusResponse) {
+      if(statusResponse == "OK" && !results[0].partial_match) {
+        createPin(results[0].geometry.location, title, voices.length, info);
+      }
+    });
+  }
 }
 
 function loadScript() {

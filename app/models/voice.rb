@@ -45,6 +45,9 @@ class Voice < ActiveRecord::Base
   
   validates :map_url, :url => { :allow_blank => true }
 
+  validates :latitude, :numericality => { :allow_blank => true }
+  validates :longitude, :numericality => { :allow_blank => true }
+
   validates_attachment_presence :background_image
   validates_attachment_size :background_image, :less_than => 2.megabytes
   validates_attachment_content_type :background_image, :content_type => ['image/jpeg', 'image/jpg', 'image/x-jpeg', 'image/x-jpg', 'image/pjpeg', 'image/png', 'image/x-png']

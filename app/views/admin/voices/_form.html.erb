@@ -1,3 +1,4 @@
+<% javascript "http://maps.google.com/maps/api/js?sensor=false", :geocoder %>
 <div class="content">
     <h2><%= yield(:title) || 'The slogan here' %></h2>
     <%= form_for [:admin, @voice], :html => { :multipart => true, :autocomplete => "off"} do |f| %>
@@ -31,6 +32,22 @@
             <div class="input-wrapper">
                 <div class="input">
                 <%= f.text_field :location %>
+                </div>
+            </div>
+          </li>
+          <li>
+            <%= f.label :latitude %>
+            <div class="input-wrapper">
+                <div class="input">
+                <%= f.text_field :latitude %>
+                </div>
+            </div>
+          </li>
+          <li>
+            <%= f.label :longitude %>
+            <div class="input-wrapper">
+                <div class="input">
+                <%= f.text_field :longitude %>
                 </div>
             </div>
           </li>
