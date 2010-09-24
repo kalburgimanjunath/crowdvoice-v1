@@ -40,16 +40,14 @@ class ApplicationController < ActionController::Base
   def login_required
     unless logged_in?
       session[:back] = request.fullpath
-      flash.now[:alert] = "You need to log in first."
-      redirect_to login_path
+      redirect_to login_path, :alert => "You need to log in first."
     end
   end
   
   # Requires the current logged in user to be an administrator
   def admin_required
     unless current_user.admin?
-      flash.now[:alert] = "You need to be an administrator to do this."
-      redirect_to root_path
+      redirect_to root_path, :alert => "You need to be an administrator to do this."
     end
   end
 end

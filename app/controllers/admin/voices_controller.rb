@@ -27,11 +27,11 @@ class Admin::VoicesController < ApplicationController
   def create
     @voice = current_user.voices.build(params[:voice])
     if @voice.save
-      if params[:voice][:background_image].blank?
+      # if params[:voice][:background_image].blank?
         redirect_to @voice, :notice => "Voice successfully created"
-      else
-        render 'crop'
-      end
+      # else
+      #   render 'crop'
+      # end
     else
       render 'new'
     end

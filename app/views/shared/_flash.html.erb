@@ -1,7 +1,7 @@
 <% flash.each do |key, msg| %>
   <%= content_tag :div, :class => "flash #{key}" do %>
     <p>
-      <%= key == :alert ? "Oops!" : "Success!" %>
+      <%= key.to_sym == :alert ? "Oops!" : "Success!" %>
     </p>
     <p>
       <%= msg %>

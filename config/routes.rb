@@ -43,7 +43,7 @@ Crowdvoice::Application.routes.draw do
   
   resources :voices, :path => "/", :only => [:index, :show] do
     collection do
-      get 'all' => :all
+      get 'all' => redirect('/#all-voices')
     end
     
     member do
