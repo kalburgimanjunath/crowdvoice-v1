@@ -44,7 +44,7 @@ module ApplicationHelper
   
   # Includes the passed javascripts in the proper +head+ tag of the layout
   def javascript(*args)
-    args = args.map { |arg| arg == :defaults ? arg : arg.to_s }
+    # Cannot convert to_s because we have custom javascript expansions
     content_for(:head) { javascript_include_tag(*args) }
   end
   
