@@ -9,10 +9,10 @@ gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "
 
 gem 'nokogiri', '1.4.1'
 gem 'sax-machine'
-gem 'oauth'
+gem 'oauth', '~> 0.4.3'
 gem 'twitter_oauth'
 
-gem 'twitter'
+gem 'twitter', '~> 0.9.12'
 gem 'koala'
 gem 'rio'
 
