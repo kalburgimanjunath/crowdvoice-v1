@@ -14,7 +14,7 @@ gem 'twitter_oauth'
 
 gem 'twitter'
 gem 'koala'
-
+gem 'rio'
 
 gem 'paperclip'
 

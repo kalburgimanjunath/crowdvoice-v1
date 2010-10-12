@@ -101,12 +101,10 @@ class Image < Content
   
   # Saves remote image url to a local tmp file
   def self.fetch_remote_image(url)
-    response = NetRequest.get_safe_response(url)
-    if response.present? && response.content_type =~ /image/i
-      tmp_file = Tempfile.new(URI.decode(File.basename(url)))
-      tmp_file.write response.body
-      tmp_file
-    end
+    img = rio(url).binmode
+    tmp = rio("#{Dir.tmpdir}/#{img.filename}")
+    img > tmp
+    File.open(tmp.path)
   end
 
   # Extracts the extension of the image url or jpg by default
