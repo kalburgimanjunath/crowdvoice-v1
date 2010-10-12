@@ -155,7 +155,7 @@ DEPENDENCIES
   mini_magick
   mysql
   nokogiri (= 1.4.1)
-  oauth (= 0.4.3)
+  oauth (~> 0.4.3)
   paperclip
   rails (= 3.0.0)
   rails3-generators
@@ -164,6 +164,6 @@ DEPENDENCIES
   rspec_twicks
   sax-machine
   tmail
-  twitter (= 0.9.12)
+  twitter (~> 0.9.12)
   twitter_oauth
   will_paginate!
