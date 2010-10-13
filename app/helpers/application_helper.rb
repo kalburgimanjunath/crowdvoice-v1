@@ -17,28 +17,33 @@ module ApplicationHelper
     code.html_safe
   end
 
+  def chartbeat_top
+    code = <<-eos
+      <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+    eos
+    code.html_safe
+  end
+
   def chartbeat
     code = <<-eos
       <script type="text/javascript">
-      var _sf_startpt=(new Date()).getTime();
-      $(function() {
-        var _sf_async_config={uid:13467,domain:"crowdvoice.org"};
-        (function(){
-          function loadChartbeat() {
-            window._sf_endpt=(new Date()).getTime();
-            var e = document.createElement('script');
-            e.setAttribute('language', 'javascript');
-            e.setAttribute('type', 'text/javascript');
-            e.setAttribute('src',
-               (("https:" == document.location.protocol) ? "https://s3.amazonaws.com/" : "http://") +
-               "static.chartbeat.com/js/chartbeat.js");
-            document.body.appendChild(e);
-          }
-          var oldonload = window.onload;
-          window.onload = (typeof window.onload != 'function') ?
-             loadChartbeat : function() { oldonload(); loadChartbeat(); };
-        })();
-      });
+      var _sf_async_config={uid:13467,domain:"crowdvoice.org"};
+      (function(){
+        function loadChartbeat() {
+          window._sf_endpt=(new Date()).getTime();
+          var e = document.createElement('script');
+          e.setAttribute('language', 'javascript');
+          e.setAttribute('type', 'text/javascript');
+          e.setAttribute('src',
+             (("https:" == document.location.protocol) ? "https://s3.amazonaws.com/" : "http://") +
+             "static.chartbeat.com/js/chartbeat.js");
+          document.body.appendChild(e);
+        }
+        var oldonload = window.onload;
+        window.onload = (typeof window.onload != 'function') ?
+           loadChartbeat : function() { oldonload(); loadChartbeat(); };
+      })();
+
       </script>
     eos
     code.html_safe
