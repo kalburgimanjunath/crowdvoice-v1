@@ -7,7 +7,7 @@ Class(Crowdvoice,'Carousel')({
     index : 0,
     images : [],
 		picture: null,
-		DEFAULT_IMAGE: "/images/link-default.png",
+		DEFAULT_IMAGE: "http://c1736512.cdn.cloudfiles.rackspacecloud.com/link-default.png",
 		
     initialize : function (image)
     {
