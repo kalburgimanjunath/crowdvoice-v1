@@ -11,7 +11,7 @@ It will also need to setup a couple of cron jobs to process email, RSS feeds, an
   
 `gem install bundler`
 
-`gem install rails -v=3.0.0`
+`gem install rails -v=3.0.3
 
 ### 2. Install bundle dependencies
 
