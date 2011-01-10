@@ -3,7 +3,7 @@
   <head>
     <%= chartbeat_top %>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>CrowdVoice - <%= yield(:title) || 'Tracking voices of protest' %></title>
+    <title><%= yield(:title) || 'Tracking voices of protest' %> - CrowdVoice</title>
     <%= stylesheet_link_tag 'application' %>
     <%= stylesheet_link_tag 'homepage', 'pageSlide', 'colors' %>
     <%= javascript_include_tag :jquery, 'homepage', 'pageSlide', 'ZeroClipboard', :ajaxsearch %>

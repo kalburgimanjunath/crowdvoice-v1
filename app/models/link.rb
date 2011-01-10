@@ -40,7 +40,7 @@ class Link < Content
   private
 
   def get_thumbnail_dimensions
-    dimensions = Image.dimensions(thumbnail_url)
+    dimensions = Image.dimensions(@fetched_image ? @fetched_image : thumbnail_url)
     self.width = dimensions[:width]
     self.height = dimensions[:height]
   end
@@ -62,11 +62,11 @@ class Link < Content
   def fetch_thumbnail
     begin
       if !default_thumbnail?
-        image = Image.fetch_remote_image(thumbnail_url)
-        if image.nil?
+        @fetched_image = Image.fetch_remote_image(thumbnail_url)
+        if @fetched_image.nil?
           save_default_thumbnail
         else
-          self.preview = image
+          self.preview = @fetched_image
         end
       end
     rescue # timeout error, or ImageMagick's identify error
