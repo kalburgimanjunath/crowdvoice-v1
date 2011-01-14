@@ -58,9 +58,9 @@ class << NetRequest
   #
   # NOTE: use the *valid_url?* method before you call this method.
   #
-  def get(url, headers = {}, retries = 8)
+  def get(url, headers = {})
     return nil unless valid_url? url
-    response = get_safe_response(url, headers, retries)
+    response = get_safe_response(url, headers)
     response.body if response
   end
 
