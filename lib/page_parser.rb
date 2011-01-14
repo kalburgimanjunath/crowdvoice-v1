@@ -37,15 +37,13 @@ class PageParser
   # The headers specified here will be sent to remote servers when a
   # request is made.
   REQUEST_HEADERS = {
-    'User-Agent' => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7'
-    # 'Accept' => '*/*',
+    'User-Agent' => 'ruby'
+    # 'User-Agent' => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12'
+    # 'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     # 'Connection' => 'keep-alive',
-    # 'Referer' => 'http://crowdvoice.org',
-    # 'Host' => '',
-    # 'Accept-Language' => 'en-us',
+    # 'Accept-Language' => 'en,en-us;q=0.5',
     # 'Accept-Encoding' => 'gzip,deflate',
-    # 'Accept-Charset' => 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
-    # 'Content-Length' => '0'
+    # 'Accept-Charset' => 'ISO-8859-1,utf-8;q=0.7,*;q=0.7'
   }
   
   # HTML title getter

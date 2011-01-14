@@ -23,7 +23,7 @@ class << NetRequest
   #  - HTTPResponse if connection to the server was successful.
   #  - SocketError, .. if something when wrong!
   #
-  def get_response(url, headers = {}, retries = 3)
+  def get_response(url, headers = {}, retries = 8)
     extract_http_response_object(url, headers, retries)
   end
 
@@ -37,7 +37,7 @@ class << NetRequest
   #  - HTTPResponse if connection to the server was successful.
   #  - nil if there was an error with the connection
   #
-  def get_safe_response(url, headers = {}, retries = 3)
+  def get_safe_response(url, headers = {}, retries = 8)
     begin
       extract_http_response_object(url, headers, retries)
     rescue SocketError, Timeout::Error, ArgumentError
@@ -58,9 +58,9 @@ class << NetRequest
   #
   # NOTE: use the *valid_url?* method before you call this method.
   #
-  def get(url, headers = {})
+  def get(url, headers = {}, retries = 8)
     return nil unless valid_url? url
-    response = get_safe_response(url, headers)
+    response = get_safe_response(url, headers, retries)
     response.body if response
   end
 
