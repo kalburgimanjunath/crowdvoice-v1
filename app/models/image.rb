@@ -7,7 +7,7 @@ class Image < Content
     :styles => { :thumb => '260x260>', :thumb_wdgt => '53x49#' }
   }).merge(rackspace_cdn_settings)
 
-  before_create :fetch_thumbnail, :if => "!url.blank? && emailed_from.blank?"
+  before_create :fetch_thumbnail, :if => "!url.blank?"
   before_create :update_title
   after_create :set_dimensions, :setup_imap_urls
 
@@ -16,17 +16,18 @@ class Image < Content
     ''
   end
 
-  def resolve_url(symbol)
-    resolve_domain + self.mailed_attachment.url(:original).gsub(/\?.*/, '')
+  def resolve_url(symbol = :original)
+    resolve_domain + self.mailed_attachment.url(symbol).gsub(/\?.*/, '')
   end
 
   def setup_imap_urls
-    return nil unless self.emailed_from?
-    self.update_attributes(
-      :url => resolve_url(:original),
-      :image_url => resolve_url(:original),
-      :thumbnail_url => resolve_url(:thumbnail_url)
-    )
+    if self.emailed_from.present?
+      self.update_attributes(
+        :url => resolve_url(:original),
+        :image_url => resolve_url(:original),
+        :thumbnail_url => resolve_url(:thumbnail_url)
+      )
+    end
   end
 
   # Detects if the source of the url is from
@@ -136,7 +137,11 @@ class Image < Content
     else
       self.image_url = self.thumbnail_url = url
     end
-    self.preview = Image.fetch_remote_image(thumbnail_url)
+    if emailed_from.present?
+      self.preview = mailed_attachment
+    else
+      self.preview = Image.fetch_remote_image(thumbnail_url)
+    end
   end
 
   def update_title

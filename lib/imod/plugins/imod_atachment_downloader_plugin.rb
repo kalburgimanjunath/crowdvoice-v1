@@ -121,7 +121,7 @@ class ImodAttachmentDownloaderPlugin < ImodPlugin
     # extract width, and height
     temp = File.new(filename, 'r')
     im = voice.images.build(
-      :url => 'http://no-url-set.com',
+      :url => "http://no-url-set.com/#{Time.now.to_i}#{rand(100)}.jpg",
       :mailed_attachment => temp,
       :emailed_from => target_mail_address,
       :description => mail.subject
