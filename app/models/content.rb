@@ -6,15 +6,6 @@ class Content < ActiveRecord::Base
 
   validates :voice_id,
     :presence => true
-  validates :url,
-    :presence => true,
-    :url => {
-      :message => "URL is invalid",
-    },
-    :uniqueness => {
-      :scope => :voice_id,
-      :message => "Thanks for participating, but the content is already in the voice. Try a different image, video or link."
-    }
 
   scope :approved, where(:approved => true)
   scope :unapproved, where(:approved => false)
