@@ -1,5 +1,5 @@
 <%= link_to image.image_url, {:rel => "prettyPhoto", :title => image.description} do %>
-  <%= image_tag(image.preview.url, :height => image.thumbnail_height, :alt => image.description.present? ? image.description : image.image_url) %>
+  <%= image_tag(image.emailed_from.present? ? image.thumbnail_url : image.preview.url, :height => image.thumbnail_height, :alt => image.description.present? ? image.description : image.image_url) %>
 <% end %>
 <% unless image.description.blank? %>
   <div class="overlap content">

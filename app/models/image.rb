@@ -7,7 +7,7 @@ class Image < Content
     :styles => { :thumb => '260x260>', :thumb_wdgt => '53x49#' }
   }).merge(rackspace_cdn_settings)
 
-  before_create :fetch_thumbnail, :if => "!url.blank?"
+  before_create :fetch_thumbnail, :if => "!url.blank? && emailed_from.blank?"
   before_create :update_title
   after_create :set_dimensions, :setup_imap_urls
 
