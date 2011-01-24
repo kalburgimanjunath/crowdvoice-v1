@@ -7,9 +7,23 @@ class Image < Content
     :styles => { :thumb => '260x260>', :thumb_wdgt => '53x49#' }
   }).merge(rackspace_cdn_settings)
 
+  validates :url,
+    :presence => {
+      :if => "emailed_from.blank?"
+    },
+    :url => {
+      :message => "URL is invalid",
+      :if => "emailed_from.blank?"
+    },
+    :uniqueness => {
+      :scope => :voice_id,
+      :if => "emailed_from.blank?",
+      :message => "Thanks for participating, but the content is already in the voice. Try a different image, video or link."
+    }
+
   before_create :fetch_thumbnail, :if => "!url.blank?"
   before_create :update_title
-  after_create :set_dimensions, :setup_imap_urls
+  after_create :setup_imap_urls, :save_image_dimensions
 
   def resolve_domain
     return 'http://127.0.0.1:3000' unless Rails.env == 'production'

@@ -6,6 +6,16 @@ class Video < Content
   before_create :fetch_thumbnail
   after_create :save_image_dimensions
 
+  validates :url,
+    :presence => true,
+    :url => {
+      :message => "URL is invalid",
+    },
+    :uniqueness => {
+      :scope => :voice_id,
+      :message => "Thanks for participating, but the content is already in the voice. Try a different image, video or link."
+    }
+
   # Detects if the source of the url is from
   # :youtube, :vimeo or :unknown
   def network

@@ -14,6 +14,15 @@ class Link < Content
     :presence => true#, :if => :should_validate_dimensions?
   validates :height,
     :presence => true#, :if => :should_validate_dimensions?
+  validates :url,
+    :presence => true,
+    :url => {
+      :message => "URL is invalid",
+    },
+    :uniqueness => {
+      :scope => :voice_id,
+      :message => "Thanks for participating, but the content is already in the voice. Try a different image, video or link."
+    }
   
   def couldnt_fetch_data
     errors.add(:url, :invalid) if @has_invalid_url_error

@@ -119,9 +119,8 @@ class ImodAttachmentDownloaderPlugin < ImodPlugin
 
     # pass over the temp file to the image object to make paperclip
     # extract width, and height
-    temp = File.new(filename, 'r')
+    temp = File.open(filename)
     im = voice.images.build(
-      :url => "http://no-url-set.com/#{filename}",
       :mailed_attachment => temp,
       :emailed_from => target_mail_address,
       :description => mail.subject
