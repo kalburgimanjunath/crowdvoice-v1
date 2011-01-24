@@ -151,11 +151,7 @@ class Image < Content
     else
       self.image_url = self.thumbnail_url = url
     end
-    if emailed_from.present?
-      self.preview = mailed_attachment
-    else
-      self.preview = Image.fetch_remote_image(thumbnail_url)
-    end
+    self.preview = Image.fetch_remote_image(thumbnail_url)
   end
 
   def update_title
