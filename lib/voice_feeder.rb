@@ -91,7 +91,7 @@ class VoiceFeeder
           (tweet_errors += 1 and next) unless content.valid?
           added_tweet_links += 1
           begin
-          content.save
+            content.save
           rescue
           end
         end

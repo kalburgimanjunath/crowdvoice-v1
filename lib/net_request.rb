@@ -113,17 +113,21 @@ class << NetRequest
     http = Net::HTTP.new( url.host || url.registry )
     http.read_timeout = TIMEOUT
     http.open_timeout = 2
-    http.start do |http|
-      response = http.request_get(url.request_uri, headers)
-      case response
-        when Net::HTTPSuccess
-          {:response => response, :url => url.to_s}
-        when Net::HTTPRedirection
-          get_last_response_with_url(response['location'], headers, retries - 1, url.host)
-        when Net::HTTPClientError
-        when Net::HTTPServerError
-          #puts "NetRequest::Error"
+    begin
+      http.start do |http|
+        response = http.request_get(url.request_uri, headers)
+        case response
+          when Net::HTTPSuccess
+            {:response => response, :url => url.to_s}
+          when Net::HTTPRedirection
+            get_last_response_with_url(response['location'], headers, retries - 1, url.host)
+          when Net::HTTPClientError
+          when Net::HTTPServerError
+            #puts "NetRequest::Error"
+        end
       end
+    rescue Timeout::Error
+      raise "Timeout::Error execution expired"
     end
   end
 
