@@ -100,7 +100,7 @@ class VoiceFeeder
     end
 
     # save pubDate of the last tweet
-    unless not voice.last_tweet.nil? and (voice.last_tweet <=> last_tweet) >= 0
+    unless last_tweet.nil? || (!voice.last_tweet.nil? and (voice.last_tweet <=> last_tweet) >= 0)
       voice.last_tweet = last_tweet
       voice.save
     end
