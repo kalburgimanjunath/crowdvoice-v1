@@ -23,7 +23,7 @@ class << NetRequest
   #  - HTTPResponse if connection to the server was successful.
   #  - SocketError, .. if something when wrong!
   #
-  def get_response(url, headers = {}, retries = 8)
+  def get_response(url, headers = {}, retries = 20)
     extract_http_response_object(url, headers, retries)
   end
 
@@ -37,7 +37,7 @@ class << NetRequest
   #  - HTTPResponse if connection to the server was successful.
   #  - nil if there was an error with the connection
   #
-  def get_safe_response(url, headers = {}, retries = 8)
+  def get_safe_response(url, headers = {}, retries = 20)
     begin
       extract_http_response_object(url, headers, retries)
     rescue SocketError, Timeout::Error, ArgumentError
@@ -106,7 +106,7 @@ class << NetRequest
 
   # Get last URL by redirection
   #
-  def get_last_response_with_url(url, headers = {}, retries = 5, last_host = nil)
+  def get_last_response_with_url(url, headers = {}, retries = 20, last_host = nil)
     raise ArgumentError, 'HTTP redirect too deep' if retries.zero?
     url = last_host.present? && !(url =~ /^https?:\/\//) ? "http://#{last_host}#{url}" : url
     url = URI.parse(url) unless url.is_a?(URI::HTTP)
